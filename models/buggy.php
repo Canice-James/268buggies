@@ -1,5 +1,5 @@
 <?php
-class Buggy
+class BuggyModel
 {
 
   // Connection instance
@@ -33,11 +33,8 @@ class Buggy
   //R
   public function getAll()
   {
-    $query = "SELECT * FROM" . $this->table_name . "";
-
-    $stmt = $this->connection->prepare($query);
-
-    $stmt->execute();
+    $query = "SELECT * FROM $this->table_name";
+    $stmt = $this->connection->query($query);
 
     return $stmt;
   }

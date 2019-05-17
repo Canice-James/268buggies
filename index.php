@@ -6,10 +6,6 @@ include_once './models/buggy.php';
 $db = new Database();
 $connection = $db->getConnection();
 
-// $buggy = new Buggy($connection);
-
-// $stmt = $buggy->getAll();
-// $count = $stmt->rowCount();
 
 
 /*

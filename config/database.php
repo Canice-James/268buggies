@@ -18,7 +18,7 @@ class Database
     try {
 
       /* Attempt to connect to MySQL database */
-      $this->conn = new mysqli($this->HOST, $this->USER, $this->PASSWORD, $this->DATABASE);
+      $this->conn = new PDO("mysql:host=$this->HOST;dbname=$this->DATABASE;charset=utf8mb4", $this->USER, $this->PASSWORD);
 
     } catch (PDOException $exception) {
       echo "Error: " . $exception->getMessage();
