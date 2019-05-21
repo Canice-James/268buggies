@@ -81,35 +81,26 @@
         <table class="table table-hover">
           <thead class="text-warning">
             <th>ID</th>
-            <th>Name</th>
-            <th>Salary</th>
-            <th>Country</th>
+            <th>Client ID</th>
+            <th>Group Tour</th>
+            <th>Route</th>
+            <th>Date</th>
           </thead>
           <tbody>
+            
+          <?php 
+          foreach (Home::getTours() as $row) {
+          echo '
             <tr>
-              <td>1</td>
-              <td>Dakota Rice</td>
-              <td>$36,738</td>
-              <td>Niger</td>
+              <td>'. $row['Tour_ID'] .'</td>
+              <td>'. $row['Client_ID'] .'</td>
+              <td>'. $row['Group_Tour'] .'</td>
+              <td>'. $row['Route'] .'</td>
+              <td>'. $row['Date'] .'</td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Minerva Hooper</td>
-              <td>$23,789</td>
-              <td>Curaçao</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Sage Rodriguez</td>
-              <td>$56,142</td>
-              <td>Netherlands</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Philip Chaney</td>
-              <td>$38,735</td>
-              <td>Korea, South</td>
-            </tr>
+          ';
+           } ?>
+
           </tbody>
         </table>
       </div>
@@ -119,41 +110,29 @@
     <div class="card">
       <div class="card-header card-header-text" data-background-color="rose">
         <h4 class="card-title">Incidents</h4>
-        <p class="category">Last incident on 15th September, 2016</p>
+        <p class="category">Last incident on <?php echo Home::getRecentIncidentDate(); ?></p>
       </div>
       <div class="card-content table-responsive">
         <table class="table table-hover">
           <thead class="text-warning">
             <th>ID</th>
-            <th>Name</th>
-            <th>Salary</th>
-            <th>Country</th>
+            <th>Description</th>
+            <th>Cause</th>
+            <th>Date</th>
           </thead>
           <tbody>
+          <?php
+          foreach (Home::getIncidents() as $row) {
+          echo '
             <tr>
-              <td>1</td>
-              <td>Dakota Rice</td>
-              <td>$36,738</td>
-              <td>Niger</td>
+              <td>'. $row['Incid_ID'] .'</td>
+              <td>'. $row['Incid_desc'] .'</td>
+              <td>'. $row['Cause_of_Incid'] .'</td>
+              <td>'. $row['Date'] .'</td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>Minerva Hooper</td>
-              <td>$23,789</td>
-              <td>Curaçao</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Sage Rodriguez</td>
-              <td>$56,142</td>
-              <td>Netherlands</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Philip Chaney</td>
-              <td>$38,735</td>
-              <td>Korea, South</td>
-            </tr>
+          ';
+          } ?>
+
           </tbody>
         </table>
       </div>

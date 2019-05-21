@@ -1,10 +1,9 @@
 <?php 
   
-  
-  //Set Route to handle page requests
+  //Set Route to handle page request
   Route::set('index.php', function() {
-    //Load View
-    Index::CreateView('index', null, 'default');
+    //Load View, paramaters: view name(string), pageData(array), layout(string)
+    Home::CreateView('home', null, 'default');
   });
 
   Route::set('dashboard', function(){
@@ -13,9 +12,8 @@
 
   //Set Route 
   Route::set('buggy', function() {
-    $buggies = Buggy::getBuggies();
-    
-    $pageData = array("buggies"=> $buggies);
+    //Add variables into an array and pass that array of data into the page
+    $pageData = array("variableName"=> "variable to pass into page");
     Buggy::CreateView('buggy', $pageData, 'default');
   });
 ?>

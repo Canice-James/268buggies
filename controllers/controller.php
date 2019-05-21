@@ -9,8 +9,8 @@ class Controller {
     require_once("./views/$viewName.php"); //Load view
 
     if ($layout != null){ //If using layout run output buffering
-      $content = ob_get_clean(); //Save content into variable
-      Index::UseLayout('default', $content, $data); //pass content into layout
+      $content = ob_get_clean(); //Save view content into variable
+      self::UseLayout('default', $content, $data); //pass content into layout
     }
   }
 
