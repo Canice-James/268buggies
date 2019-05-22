@@ -6,14 +6,14 @@
     Home::CreateView('home', null, 'default');
   });
 
-  Route::set('dashboard', function(){
-    Dashboard::CreateView('dashboard');
+  Route::set('parts', function(){
+    Dashboard::CreateView('parts');
   });
 
   //Set Route 
-  Route::set('buggy', function() {
+  Route::set('buggies', function() {
     //Add variables into an array and pass that array of data into the page
     $pageData = array("variableName"=> "variable to pass into page");
-    Buggy::CreateView('buggy', $pageData, 'default');
+    Buggy::CreateView('buggies', $pageData, 'default');
   });
 ?>
