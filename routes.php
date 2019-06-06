@@ -7,7 +7,7 @@
   });
 
   Route::set('parts', function(){
-    Dashboard::CreateView('parts');
+    Part::CreateView('parts', null, 'default');
   });
 
   //Set Route 
