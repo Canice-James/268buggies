@@ -16,6 +16,18 @@
         </a>
       </li>
       <li class="nav-item ">
+        <a class="nav-link" href="./buggies">
+          <i class="material-icons">directions_car</i>
+          <p>Buggies</p>
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="./parts">
+          <i class="material-icons">settings</i>
+          <p>Parts</p>
+        </a>
+      </li>
+      <li class="nav-item ">
         <a class="nav-link" href="./user.html">
           <i class="material-icons">person</i>
           <p>User Profile</p>
