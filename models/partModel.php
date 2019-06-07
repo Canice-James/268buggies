@@ -15,8 +15,9 @@ class BuggyModel
   }
 
   //C
-  public static function create()
-  { }
+  public static function create(){
+    
+  }
   //R
   public static function getAll()
   {
