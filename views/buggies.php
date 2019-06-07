@@ -1,9 +1,41 @@
-<h1>buggy page</h1>
+<!-- <h1>buggy page</h1> -->
 
-<?php
-foreach (Buggy::getBuggies() as $row) {
 
-  echo "\n";
-    echo "<h4>".$row['Buggy_ID'] . " " . $row['Colour'] . "</h4>\n";
-}
-?>
+<div class="row">
+
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Buggies</h4>
+        <p class="card-category"></p>
+      </div>
+      <div class="card-body table-responsive">
+        <table class="table table-hover">
+          <thead class="text-info">
+            <th>ID</th>
+            <th>Client ID</th>
+            <th>Group Tour</th>
+            <th>Route</th>
+            <th>Date</th>
+          </thead>
+          <tbody>
+
+            <?php
+            foreach (Buggy::getBuggies() as $row) {
+              echo '
+                  <tr>
+                    <td>' . $row['Buggy_ID'] . '</td>
+                    <td>' . $row['Colour'] . '</td>
+                    <td>' . $row['Run_Duration'] . '</td>
+                    <td>' . $row['Run_Count'] . '</td>
+                    <td>' . $row['Run_Left'] . '</td>
+                  </tr>
+                ';
+            } ?>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
