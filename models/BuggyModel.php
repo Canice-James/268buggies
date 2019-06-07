@@ -15,8 +15,13 @@ class BuggyModel
   }
 
   //C
-  public static function create()
-  { }
+  public static function create($id, $colour, $duration, $runCount, $runLeft){
+    $query = "INSERT INTO self::$table_name(Buggy_ID, Colour, Run_Duration, Run_Count, Run_Left)
+    VALUES('". $id ."', '". $colour ."', '". $duration ."', '". $runCount ."', '". $runLeft ."')";
+
+    self::$connection->query($query);
+  }
+
   //R
   public static function getAll()
   {
