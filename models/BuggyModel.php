@@ -21,15 +21,19 @@ class BuggyModel
 
     $stmt = self::$connection->query($query);
 
-    $dataReport = "";
+    $message = "";
+    $code = "";
 
     if($stmt === TRUE){
-      $dataReport = "Data Inserted Successfully";
+      $message = "Data Inserted Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    array("message"=> $message, "code"=>$code);
+    return $code;
   }
 
   //R

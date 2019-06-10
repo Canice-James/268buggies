@@ -16,4 +16,6 @@
     $pageData = array("variableName"=> "variable to pass into page");
     Buggy::CreateView('buggies', null, 'default');
   });
+
+  require_once("./api.php"); //Load view
 ?>
