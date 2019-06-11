@@ -8,6 +8,8 @@
       <div class="card-header card-header-primary">
         <h4 class="card-title">Buggies</h4>
         <p class="card-category"></p>
+        <button class="btn btn-primary pull-right"  data-toggle="modal" data-target="#create" type="submit">Create</button>
+
       </div>
       <div class="card-body table-responsive">
         <table class="table table-hover">
@@ -35,6 +37,27 @@
 
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="create" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
