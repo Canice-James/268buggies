@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Apr 19, 2019 at 12:14 AM
--- Server version: 5.7.19
--- PHP Version: 7.1.9
+-- Host: 127.0.0.1
+-- Generation Time: Jun 11, 2019 at 06:06 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `268buggies_dummy`
+-- Database: `268_buggies_dummy`
 --
 
 -- --------------------------------------------------------
@@ -29,18 +29,17 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `agent`;
-CREATE TABLE IF NOT EXISTS `agent` (
-  `Agent_ID` int(6) NOT NULL,
-  `Agent_Fname` varchar(30) NOT NULL,
-  `Agent_Lname` varchar(30) NOT NULL,
-  PRIMARY KEY (`Agent_ID`)
+CREATE TABLE `agent` (
+  `agent_id` int(6) NOT NULL,
+  `agent_fname` varchar(30) NOT NULL,
+  `agent_lname` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `agent`
 --
 
-INSERT INTO `agent` (`Agent_ID`, `Agent_Fname`, `Agent_Lname`) VALUES
+INSERT INTO `agent` (`agent_id`, `agent_fname`, `agent_lname`) VALUES
 (29, 'Sandals', 'Resort'),
 (30, 'Verandah', 'Resort');
 
@@ -51,20 +50,19 @@ INSERT INTO `agent` (`Agent_ID`, `Agent_Fname`, `Agent_Lname`) VALUES
 --
 
 DROP TABLE IF EXISTS `buggy`;
-CREATE TABLE IF NOT EXISTS `buggy` (
-  `Buggy_ID` int(6) NOT NULL,
-  `Colour` varchar(15) NOT NULL,
-  `Run_Duration` int(11) NOT NULL,
-  `Run_Count` int(11) NOT NULL,
-  `Run_Left` int(11) NOT NULL,
-  PRIMARY KEY (`Buggy_ID`)
+CREATE TABLE `buggy` (
+  `buggy_id` int(6) NOT NULL,
+  `colour` varchar(15) NOT NULL,
+  `run_duration` int(11) NOT NULL,
+  `run_count` int(11) NOT NULL,
+  `run_left` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buggy`
 --
 
-INSERT INTO `buggy` (`Buggy_ID`, `Colour`, `Run_Duration`, `Run_Count`, `Run_Left`) VALUES
+INSERT INTO `buggy` (`buggy_id`, `colour`, `run_duration`, `run_count`, `run_left`) VALUES
 (5, 'Hot Red', 1, 1, 1),
 (6, 'Zebra', 12, 10, 2),
 (7, 'Zebra', 12, 10, 2),
@@ -89,19 +87,17 @@ INSERT INTO `buggy` (`Buggy_ID`, `Colour`, `Run_Duration`, `Run_Count`, `Run_Lef
 --
 
 DROP TABLE IF EXISTS `buggy_part`;
-CREATE TABLE IF NOT EXISTS `buggy_part` (
-  `Buggy_ID` int(6) NOT NULL,
-  `Part_ID` int(6) NOT NULL,
-  `Part_Run_Count` int(10) NOT NULL DEFAULT '0',
-  KEY `Buggy_ID` (`Buggy_ID`),
-  KEY `Part_ID` (`Part_ID`)
+CREATE TABLE `buggy_part` (
+  `buggy_id` int(6) NOT NULL,
+  `part_id` int(6) NOT NULL,
+  `part_run_count` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buggy_part`
 --
 
-INSERT INTO `buggy_part` (`Buggy_ID`, `Part_ID`, `Part_Run_Count`) VALUES
+INSERT INTO `buggy_part` (`buggy_id`, `part_id`, `part_run_count`) VALUES
 (501, 980, 4),
 (501, 981, 4),
 (501, 982, 4),
@@ -166,18 +162,16 @@ INSERT INTO `buggy_part` (`Buggy_ID`, `Part_ID`, `Part_Run_Count`) VALUES
 --
 
 DROP TABLE IF EXISTS `buggy_tour`;
-CREATE TABLE IF NOT EXISTS `buggy_tour` (
-  `Buggy_ID` int(6) NOT NULL,
-  `Tour_ID` int(6) NOT NULL,
-  KEY `Buggy_ID` (`Buggy_ID`),
-  KEY `Tour_ID` (`Tour_ID`)
+CREATE TABLE `buggy_tour` (
+  `buggy_id` int(6) NOT NULL,
+  `tour_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `buggy_tour`
 --
 
-INSERT INTO `buggy_tour` (`Buggy_ID`, `Tour_ID`) VALUES
+INSERT INTO `buggy_tour` (`buggy_id`, `tour_id`) VALUES
 (501, 11),
 (502, 12),
 (503, 13),
@@ -191,24 +185,23 @@ INSERT INTO `buggy_tour` (`Buggy_ID`, `Tour_ID`) VALUES
 --
 
 DROP TABLE IF EXISTS `client`;
-CREATE TABLE IF NOT EXISTS `client` (
-  `Client_ID` int(6) NOT NULL,
-  `Client_Fname` varchar(30) NOT NULL,
-  `Client_Lname` varchar(30) NOT NULL,
-  `Client_Addr` varchar(50) NOT NULL,
-  `Client_DOB` date NOT NULL,
-  `Client_Phone` varchar(14) NOT NULL,
-  `Client_emerg_contact` varchar(30) NOT NULL,
-  `Client_emerg_contact_num` varchar(14) NOT NULL,
-  `Type` varchar(50) NOT NULL,
-  PRIMARY KEY (`Client_ID`)
+CREATE TABLE `client` (
+  `client_id` int(6) NOT NULL,
+  `client_fname` varchar(30) NOT NULL,
+  `client_lname` varchar(30) NOT NULL,
+  `client_addr` varchar(50) NOT NULL,
+  `client_dob` date NOT NULL,
+  `client_phone` varchar(14) NOT NULL,
+  `client_emerg_contact` varchar(30) NOT NULL,
+  `client_emerg_contact_num` varchar(14) NOT NULL,
+  `type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client`
 --
 
-INSERT INTO `client` (`Client_ID`, `Client_Fname`, `Client_Lname`, `Client_Addr`, `Client_DOB`, `Client_Phone`, `Client_emerg_contact`, `Client_emerg_contact_num`, `Type`) VALUES
+INSERT INTO `client` (`client_id`, `client_fname`, `client_lname`, `client_addr`, `client_dob`, `client_phone`, `client_emerg_contact`, `client_emerg_contact_num`, `type`) VALUES
 (5, 'Dayne', 'Gonsalves', 'Paynters Estate', '1993-10-06', '1-268-720-1006', 'DCL', '1-268-720-8611', 'DL'),
 (6, 'Lynette', 'Saygon', 'Paynters Estate', '1974-08-11', '1-268-720-8611', 'Sugar Ridge', '1-268-561-3218', 'VIP'),
 (101, 'Larry', 'Bird', 'Texas', '1997-09-14', '(268) 770-9090', 'Sandals', '(268) 460-8990', 'unsure'),
@@ -224,18 +217,16 @@ INSERT INTO `client` (`Client_ID`, `Client_Fname`, `Client_Lname`, `Client_Addr`
 --
 
 DROP TABLE IF EXISTS `client_agent`;
-CREATE TABLE IF NOT EXISTS `client_agent` (
-  `Agent_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  KEY `Agent_ID` (`Agent_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `client_agent` (
+  `agent_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_agent`
 --
 
-INSERT INTO `client_agent` (`Agent_ID`, `Client_ID`) VALUES
+INSERT INTO `client_agent` (`agent_id`, `client_id`) VALUES
 (29, 101),
 (29, 102),
 (30, 104),
@@ -248,20 +239,17 @@ INSERT INTO `client_agent` (`Agent_ID`, `Client_ID`) VALUES
 --
 
 DROP TABLE IF EXISTS `client_incident`;
-CREATE TABLE IF NOT EXISTS `client_incident` (
-  `Client_ID` int(6) NOT NULL,
-  `Tour_ID` int(6) NOT NULL,
-  `Incid_ID` int(6) NOT NULL,
-  KEY `Client_ID` (`Client_ID`),
-  KEY `Tour_ID` (`Tour_ID`),
-  KEY `Incid_ID` (`Incid_ID`)
+CREATE TABLE `client_incident` (
+  `client_id` int(6) NOT NULL,
+  `tour_id` int(6) NOT NULL,
+  `incid_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_incident`
 --
 
-INSERT INTO `client_incident` (`Client_ID`, `Tour_ID`, `Incid_ID`) VALUES
+INSERT INTO `client_incident` (`client_id`, `tour_id`, `incid_id`) VALUES
 (101, 11, 1001),
 (105, 15, 1002);
 
@@ -272,18 +260,16 @@ INSERT INTO `client_incident` (`Client_ID`, `Tour_ID`, `Incid_ID`) VALUES
 --
 
 DROP TABLE IF EXISTS `client_promotion`;
-CREATE TABLE IF NOT EXISTS `client_promotion` (
-  `Promo_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  KEY `Promo_ID` (`Promo_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `client_promotion` (
+  `promo_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `client_promotion`
 --
 
-INSERT INTO `client_promotion` (`Promo_ID`, `Client_ID`) VALUES
+INSERT INTO `client_promotion` (`promo_id`, `client_id`) VALUES
 (201, 101),
 (202, 104),
 (203, 103),
@@ -296,26 +282,25 @@ INSERT INTO `client_promotion` (`Promo_ID`, `Client_ID`) VALUES
 --
 
 DROP TABLE IF EXISTS `employee`;
-CREATE TABLE IF NOT EXISTS `employee` (
-  `Emp_ID` int(6) NOT NULL,
-  `Emp_Fname` varchar(30) NOT NULL,
-  `Emp_Lname` varchar(30) NOT NULL,
-  `Emp_Phone` varchar(14) NOT NULL,
-  `Emp_Addr` varchar(40) NOT NULL,
-  `Emp_DOB` date NOT NULL,
-  `Job_title` varchar(50) NOT NULL,
-  `Hours_worked` int(10) NOT NULL,
-  `Pay_rate` double(10,2) NOT NULL,
-  `Emp_Ssn` varchar(20) NOT NULL,
-  `Emp_Mbn` varchar(9) NOT NULL,
-  PRIMARY KEY (`Emp_ID`)
+CREATE TABLE `employee` (
+  `emp_id` int(6) NOT NULL,
+  `emp_fname` varchar(30) NOT NULL,
+  `emp_lname` varchar(30) NOT NULL,
+  `emp_phone` varchar(14) NOT NULL,
+  `emp_addr` varchar(40) NOT NULL,
+  `emp_dob` date NOT NULL,
+  `job_title` varchar(50) NOT NULL,
+  `hours_worked` int(10) NOT NULL,
+  `pay_rate` double(10,2) NOT NULL,
+  `emp_ssn` varchar(20) NOT NULL,
+  `emp_mbn` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`Emp_ID`, `Emp_Fname`, `Emp_Lname`, `Emp_Phone`, `Emp_Addr`, `Emp_DOB`, `Job_title`, `Hours_worked`, `Pay_rate`, `Emp_Ssn`, `Emp_Mbn`) VALUES
+INSERT INTO `employee` (`emp_id`, `emp_fname`, `emp_lname`, `emp_phone`, `emp_addr`, `emp_dob`, `job_title`, `hours_worked`, `pay_rate`, `emp_ssn`, `emp_mbn`) VALUES
 (5, 'Dayne', 'Gonsalves', '1-268-720-1006', 'Paynters Estate', '1993-10-06', 'Programmer', 0, 150.00, '123456-1-123456-GY-2', '1234567GY'),
 (101, 'John', 'Doe', '(268) 774-4757', 'Piggots', '1995-08-17', 'Mechanic', 17, 80.00, '111111-1-222222-AG-3', '1231245AG'),
 (102, 'James', 'Parker', '(268) 770-9989', 'Buckleys', '1990-01-18', 'Guide', 12, 80.00, '222222-2-333333-AG-4', '1234501AG'),
@@ -330,18 +315,16 @@ INSERT INTO `employee` (`Emp_ID`, `Emp_Fname`, `Emp_Lname`, `Emp_Phone`, `Emp_Ad
 --
 
 DROP TABLE IF EXISTS `employee_tour`;
-CREATE TABLE IF NOT EXISTS `employee_tour` (
-  `Emp_ID` int(6) NOT NULL,
-  `Tour_ID` int(6) NOT NULL,
-  KEY `Emp_ID` (`Emp_ID`),
-  KEY `Tour_ID` (`Tour_ID`)
+CREATE TABLE `employee_tour` (
+  `emp_id` int(6) NOT NULL,
+  `tour_id` int(6) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `employee_tour`
 --
 
-INSERT INTO `employee_tour` (`Emp_ID`, `Tour_ID`) VALUES
+INSERT INTO `employee_tour` (`emp_id`, `tour_id`) VALUES
 (101, 11),
 (102, 12),
 (103, 13),
@@ -359,20 +342,18 @@ INSERT INTO `employee_tour` (`Emp_ID`, `Tour_ID`) VALUES
 --
 
 DROP TABLE IF EXISTS `equipment`;
-CREATE TABLE IF NOT EXISTS `equipment` (
-  `Equip_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  `Equip_Type` varchar(100) NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  PRIMARY KEY (`Equip_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `equipment` (
+  `equip_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL,
+  `equip_type` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `equipment`
 --
 
-INSERT INTO `equipment` (`Equip_ID`, `Client_ID`, `Equip_Type`, `Quantity`) VALUES
+INSERT INTO `equipment` (`equip_id`, `client_id`, `equip_type`, `quantity`) VALUES
 (301, 101, 'Safety', 4),
 (302, 102, 'Safety', 4),
 (303, 103, 'Safety', 2),
@@ -386,25 +367,22 @@ INSERT INTO `equipment` (`Equip_ID`, `Client_ID`, `Equip_Type`, `Quantity`) VALU
 --
 
 DROP TABLE IF EXISTS `group_member`;
-CREATE TABLE IF NOT EXISTS `group_member` (
-  `Member_ID` int(6) NOT NULL AUTO_INCREMENT,
-  `mem_Fname` varchar(30) NOT NULL,
-  `mem_Lname` varchar(30) NOT NULL,
-  `mem_Address` varchar(50) NOT NULL,
-  `mem_Phone` varchar(14) NOT NULL,
-  `mem_Tour_Date` date NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  `Tour_ID` int(6) DEFAULT NULL,
-  PRIMARY KEY (`Member_ID`),
-  KEY `Client_ID` (`Client_ID`),
-  KEY `TID_FK` (`Tour_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=465 DEFAULT CHARSET=latin1;
+CREATE TABLE `group_member` (
+  `member_id` int(6) NOT NULL,
+  `mem_fname` varchar(30) NOT NULL,
+  `mem_lname` varchar(30) NOT NULL,
+  `mem_address` varchar(50) NOT NULL,
+  `mem_phone` varchar(14) NOT NULL,
+  `mem_tour_date` date NOT NULL,
+  `client_id` int(6) NOT NULL,
+  `tour_id` int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `group_member`
 --
 
-INSERT INTO `group_member` (`Member_ID`, `mem_Fname`, `mem_Lname`, `mem_Address`, `mem_Phone`, `mem_Tour_Date`, `Client_ID`, `Tour_ID`) VALUES
+INSERT INTO `group_member` (`member_id`, `mem_fname`, `mem_lname`, `mem_address`, `mem_phone`, `mem_tour_date`, `client_id`, `tour_id`) VALUES
 (456, 'Clare', 'Banks', 'Texas', '(268) 776-9890', '2019-01-03', 101, 11),
 (457, 'Joseph', 'Williams', 'Texas', '(268) 772-3377', '2019-01-03', 101, 11),
 (458, 'Trevor', 'Banks', 'Texas', '(268) 771-1010', '2019-01-03', 101, 11),
@@ -422,31 +400,51 @@ INSERT INTO `group_member` (`Member_ID`, `mem_Fname`, `mem_Lname`, `mem_Address`
 --
 
 DROP TABLE IF EXISTS `incident`;
-CREATE TABLE IF NOT EXISTS `incident` (
-  `Incid_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  `Incid_desc` varchar(100) NOT NULL,
-  `Cause_of_Incid` varchar(100) NOT NULL,
-  `Recom` varchar(100) NOT NULL,
-  `Witness_Fname` varchar(30) NOT NULL,
-  `Witness_Lname` varchar(30) NOT NULL,
-  `Procedure_Followed` tinyint(1) NOT NULL,
-  `Equip_Used` tinyint(1) NOT NULL,
-  `Equip_Type` varchar(30) NOT NULL,
-  `Date` date NOT NULL,
-  `Time` time NOT NULL,
-  PRIMARY KEY (`Incid_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `incident` (
+  `incid_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL,
+  `incid_desc` varchar(100) NOT NULL,
+  `cause_of_incid` varchar(100) NOT NULL,
+  `recom` varchar(100) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `incident`
 --
 
-INSERT INTO `incident` (`Incid_ID`, `Client_ID`, `Incid_desc`, `Cause_of_Incid`, `Recom`, `Witness_Fname`,`Witness_Lname`,`Procedure_Followed`,`Equip_Used`,`Equip_Type`, `Date`, `Time`) VALUES
-(1001, 101, 'Flat tire', 'fjeiinwokeje ekkwoo oo iine', 'blah blah blah', 'James', 'Parker',1,1,'safety', '2019-01-03', '18:10:16'),
-(1002, 105, 'Buggy Stuck', 'Driver', 'blah blah blah', 'James', 'Parker', 1, 1,'safety', '2019-02-20', '16:29:13');
+INSERT INTO `incident` (`incid_id`, `client_id`, `incid_desc`, `cause_of_incid`, `recom`, `date`, `time`) VALUES
+(1001, 101, 'Flat tire', 'fjeiinwokeje ekkwoo oo iine', 'blah blah blah', '2019-01-03', '18:10:16'),
+(1002, 105, 'Buggy Stuck', 'Driver', 'blah blah blah', '2019-02-20', '16:29:13');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `incident_details`
+--
+
+DROP TABLE IF EXISTS `incident_details`;
+CREATE TABLE `incident_details` (
+  `incid_detail_id` int(6) NOT NULL,
+  `incid_id` int(6) NOT NULL,
+  `witness_present` tinyint(1) NOT NULL,
+  `witness_fname` varchar(30) NOT NULL,
+  `witness_lname` varchar(30) NOT NULL,
+  `procedure_followed` tinyint(1) NOT NULL,
+  `adequate_training` tinyint(1) NOT NULL,
+  `equip_used` tinyint(1) NOT NULL,
+  `equip_type` varchar(100) NOT NULL,
+  `equipment_training` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `incident_details`
+--
+
+INSERT INTO `incident_details` (`incid_detail_id`, `incid_id`, `witness_present`, `witness_fname`, `witness_lname`, `procedure_followed`, `adequate_training`, `equip_used`, `equip_type`, `equipment_training`) VALUES
+(678, 1001, 1, 'James', 'Parker', 1, 1, 1, 'Safety', 1),
+(679, 1002, 1, 'Jane', 'Hurst', 1, 1, 1, 'Safety', 1);
 
 -- --------------------------------------------------------
 
@@ -455,17 +453,16 @@ INSERT INTO `incident` (`Incid_ID`, `Client_ID`, `Incid_desc`, `Cause_of_Incid`,
 --
 
 DROP TABLE IF EXISTS `inventory`;
-CREATE TABLE IF NOT EXISTS `inventory` (
-  `Part_ID` int(6) NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  KEY `Part_ID` (`Part_ID`)
+CREATE TABLE `inventory` (
+  `part_id` int(6) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`Part_ID`, `Quantity`) VALUES
+INSERT INTO `inventory` (`part_id`, `quantity`) VALUES
 (980, 5),
 (981, 6),
 (982, 5),
@@ -481,23 +478,21 @@ INSERT INTO `inventory` (`Part_ID`, `Quantity`) VALUES
 --
 
 DROP TABLE IF EXISTS `part`;
-CREATE TABLE IF NOT EXISTS `part` (
-  `Part_ID` int(6) NOT NULL,
-  `Part_Name` varchar(30) NOT NULL,
-  `Supplier_ID` int(6) NOT NULL,
-  `Unit_Price` double(8,2) NOT NULL,
-  `Run_Rate` int(11) NOT NULL,
-  `Order_Date` date NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  PRIMARY KEY (`Part_ID`),
-  KEY `Supplier_ID` (`Supplier_ID`)
+CREATE TABLE `part` (
+  `part_id` int(6) NOT NULL,
+  `part_name` varchar(30) NOT NULL,
+  `supplier_id` int(6) NOT NULL,
+  `unit_price` double(8,2) NOT NULL,
+  `run_rate` int(11) NOT NULL,
+  `order_date` date NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `part`
 --
 
-INSERT INTO `part` (`Part_ID`, `Part_Name`, `Supplier_ID`, `Unit_Price`, `Run_Rate`, `Order_Date`, `Quantity`) VALUES
+INSERT INTO `part` (`part_id`, `part_name`, `supplier_id`, `unit_price`, `run_rate`, `order_date`, `quantity`) VALUES
 (980, 'part 1', 578, 98.00, 4, '2019-03-19', 3),
 (981, 'part 2', 578, 88.00, 4, '2019-03-19', 5),
 (982, 'part 3', 578, 75.00, 4, '2019-02-18', 7),
@@ -513,20 +508,18 @@ INSERT INTO `part` (`Part_ID`, `Part_Name`, `Supplier_ID`, `Unit_Price`, `Run_Ra
 --
 
 DROP TABLE IF EXISTS `promotion`;
-CREATE TABLE IF NOT EXISTS `promotion` (
-  `Promo_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  `Promo_Desc` varchar(50) NOT NULL,
-  `Promo_Code` int(11) NOT NULL,
-  PRIMARY KEY (`Promo_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `promotion` (
+  `promo_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL,
+  `promo_desc` varchar(50) NOT NULL,
+  `promo_code` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `promotion`
 --
 
-INSERT INTO `promotion` (`Promo_ID`, `Client_ID`, `Promo_Desc`, `Promo_Code`) VALUES
+INSERT INTO `promotion` (`promo_id`, `client_id`, `promo_desc`, `promo_code`) VALUES
 (201, 101, '20% off', 4209),
 (202, 104, '20% off', 4201),
 (203, 103, 'BOGO', 1213),
@@ -539,21 +532,20 @@ INSERT INTO `promotion` (`Promo_ID`, `Client_ID`, `Promo_Desc`, `Promo_Code`) VA
 --
 
 DROP TABLE IF EXISTS `supplier`;
-CREATE TABLE IF NOT EXISTS `supplier` (
-  `Supplier_ID` int(6) NOT NULL,
-  `Company_Name` varchar(30) NOT NULL,
-  `Rep_Name` varchar(30) NOT NULL,
-  `Supplier_Phone` varchar(14) NOT NULL,
-  `Supplier_Email` varchar(30) NOT NULL,
-  `Supplier_Fax` bigint(10) NOT NULL,
-  PRIMARY KEY (`Supplier_ID`)
+CREATE TABLE `supplier` (
+  `supplier_id` int(6) NOT NULL,
+  `company_name` varchar(30) NOT NULL,
+  `rep_name` varchar(30) NOT NULL,
+  `supplier_phone` varchar(14) NOT NULL,
+  `supplier_email` varchar(30) NOT NULL,
+  `supplier_fax` bigint(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `supplier`
 --
 
-INSERT INTO `supplier` (`Supplier_ID`, `Company_Name`, `Rep_Name`, `Supplier_Phone`, `Supplier_Email`, `Supplier_Fax`) VALUES
+INSERT INTO `supplier` (`supplier_id`, `company_name`, `rep_name`, `supplier_phone`, `supplier_email`, `supplier_fax`) VALUES
 (578, 'Generic', 'John Doe', '(789) 789-7878', 'john.gen@gmail.com', 234567),
 (579, 'Bolts', 'Jane Foe', '(985) 756-8798', 'jane.bolt@gmail.com', 987742),
 (580, 'Rust Free', 'Rick Jeremy', '(767) 785-6767', 'rust@gmail.com', 987675),
@@ -566,18 +558,16 @@ INSERT INTO `supplier` (`Supplier_ID`, `Company_Name`, `Rep_Name`, `Supplier_Pho
 --
 
 DROP TABLE IF EXISTS `supplier_part`;
-CREATE TABLE IF NOT EXISTS `supplier_part` (
-  `Supplier_ID` int(6) NOT NULL,
-  `Part_ID` int(6) NOT NULL,
-  KEY `Supplier_ID` (`Supplier_ID`),
-  KEY `Part_ID` (`Part_ID`)
+CREATE TABLE `supplier_part` (
+  `supplier_id` int(6) NOT NULL,
+  `part_id` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `supplier_part`
 --
 
-INSERT INTO `supplier_part` (`Supplier_ID`, `Part_ID`) VALUES
+INSERT INTO `supplier_part` (`supplier_id`, `part_id`) VALUES
 (578, 980),
 (578, 981),
 (578, 982),
@@ -593,22 +583,20 @@ INSERT INTO `supplier_part` (`Supplier_ID`, `Part_ID`) VALUES
 --
 
 DROP TABLE IF EXISTS `survey`;
-CREATE TABLE IF NOT EXISTS `survey` (
-  `Survey_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  `Survey_Recom` char(1) NOT NULL DEFAULT 'N',
-  `Survey_Expect` char(1) NOT NULL DEFAULT 'N',
-  `Survey_Advert` char(1) NOT NULL DEFAULT 'N',
-  `Survey_Money_Value` char(1) NOT NULL DEFAULT 'N',
-  PRIMARY KEY (`Survey_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `survey` (
+  `survey_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL,
+  `survey_recom` char(1) NOT NULL DEFAULT 'N',
+  `survey_expect` char(1) NOT NULL DEFAULT 'N',
+  `survey_advert` char(1) NOT NULL DEFAULT 'N',
+  `survey_money_value` char(1) NOT NULL DEFAULT 'N'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `survey`
 --
 
-INSERT INTO `survey` (`Survey_ID`, `Client_ID`, `Survey_Recom`, `Survey_Expect`, `Survey_Advert`, `Survey_Money_Value`) VALUES
+INSERT INTO `survey` (`survey_id`, `client_id`, `survey_recom`, `survey_expect`, `survey_advert`, `survey_money_value`) VALUES
 (248, 103, '3', '4', '4', '3'),
 (249, 105, 'N', 'N', 'N', 'N');
 
@@ -619,32 +607,186 @@ INSERT INTO `survey` (`Survey_ID`, `Client_ID`, `Survey_Recom`, `Survey_Expect`,
 --
 
 DROP TABLE IF EXISTS `tours`;
-CREATE TABLE IF NOT EXISTS `tours` (
-  `Tour_ID` int(6) NOT NULL,
-  `Client_ID` int(6) NOT NULL,
-  `Group_Tour` char(1) NOT NULL DEFAULT 'N',
-  `Route` varchar(30) NOT NULL,
-  `Date` date NOT NULL,
-  `Time` time NOT NULL,
-  `Price` double(8,2) NOT NULL,
-  `No_Partic` int(12) NOT NULL,
-  `Equip_requested` tinyint(1) NOT NULL,
-  `Num_of_Buggies` int(11) NOT NULL,
-  PRIMARY KEY (`Tour_ID`),
-  KEY `Client_ID` (`Client_ID`)
+CREATE TABLE `tours` (
+  `tour_id` int(6) NOT NULL,
+  `client_id` int(6) NOT NULL,
+  `group_tour` char(1) NOT NULL DEFAULT 'N',
+  `route` varchar(30) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `no_partic` int(12) NOT NULL,
+  `equip_requested` tinyint(1) NOT NULL,
+  `num_of_buggies` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tours`
 --
 
-INSERT INTO `tours` (`Tour_ID`, `Client_ID`, `Group_Tour`, `Route`, `Date`, `Time`, `Price`, `No_Partic`, `Equip_requested`, `Num_of_Buggies`) VALUES
+INSERT INTO `tours` (`tour_id`, `client_id`, `group_tour`, `route`, `date`, `time`, `price`, `no_partic`, `equip_requested`, `num_of_buggies`) VALUES
 (11, 101, 'Y', 'South', '2019-01-03', '17:19:16', 200.00, 7, 1, 6),
 (12, 102, 'Y', 'South', '2019-03-01', '11:10:59', 200.00, 7, 1, 6),
 (13, 103, 'N', 'North', '2019-02-14', '13:15:07', 150.00, 7, 1, 3),
 (14, 104, 'Y', 'East', '2019-01-19', '10:20:18', 190.00, 7, 1, 6),
 (15, 105, 'N', 'North', '2019-02-20', '15:19:49', 150.00, 7, 1, 3);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `agent`
+--
+ALTER TABLE `agent`
+  ADD PRIMARY KEY (`agent_id`);
+
+--
+-- Indexes for table `buggy`
+--
+ALTER TABLE `buggy`
+  ADD PRIMARY KEY (`buggy_id`);
+
+--
+-- Indexes for table `buggy_part`
+--
+ALTER TABLE `buggy_part`
+  ADD KEY `Buggy_ID` (`buggy_id`),
+  ADD KEY `Part_ID` (`part_id`);
+
+--
+-- Indexes for table `buggy_tour`
+--
+ALTER TABLE `buggy_tour`
+  ADD KEY `Buggy_ID` (`buggy_id`),
+  ADD KEY `Tour_ID` (`tour_id`);
+
+--
+-- Indexes for table `client`
+--
+ALTER TABLE `client`
+  ADD PRIMARY KEY (`client_id`);
+
+--
+-- Indexes for table `client_agent`
+--
+ALTER TABLE `client_agent`
+  ADD KEY `Agent_ID` (`agent_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- Indexes for table `client_incident`
+--
+ALTER TABLE `client_incident`
+  ADD KEY `client_id` (`client_id`) USING BTREE,
+  ADD KEY `incid_id` (`incid_id`) USING BTREE,
+  ADD KEY `tour_id` (`tour_id`) USING BTREE;
+
+--
+-- Indexes for table `client_promotion`
+--
+ALTER TABLE `client_promotion`
+  ADD KEY `Promo_ID` (`promo_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`emp_id`);
+
+--
+-- Indexes for table `employee_tour`
+--
+ALTER TABLE `employee_tour`
+  ADD KEY `Emp_ID` (`emp_id`),
+  ADD KEY `Tour_ID` (`tour_id`);
+
+--
+-- Indexes for table `equipment`
+--
+ALTER TABLE `equipment`
+  ADD PRIMARY KEY (`equip_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- Indexes for table `group_member`
+--
+ALTER TABLE `group_member`
+  ADD PRIMARY KEY (`member_id`),
+  ADD KEY `Client_ID` (`client_id`),
+  ADD KEY `TID_FK` (`tour_id`);
+
+--
+-- Indexes for table `incident`
+--
+ALTER TABLE `incident`
+  ADD PRIMARY KEY (`incid_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- Indexes for table `incident_details`
+--
+ALTER TABLE `incident_details`
+  ADD PRIMARY KEY (`incid_detail_id`),
+  ADD KEY `Incid_ID` (`incid_id`);
+
+--
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD KEY `Part_ID` (`part_id`);
+
+--
+-- Indexes for table `part`
+--
+ALTER TABLE `part`
+  ADD PRIMARY KEY (`part_id`),
+  ADD KEY `Supplier_ID` (`supplier_id`);
+
+--
+-- Indexes for table `promotion`
+--
+ALTER TABLE `promotion`
+  ADD PRIMARY KEY (`promo_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`supplier_id`);
+
+--
+-- Indexes for table `supplier_part`
+--
+ALTER TABLE `supplier_part`
+  ADD KEY `Supplier_ID` (`supplier_id`),
+  ADD KEY `Part_ID` (`part_id`);
+
+--
+-- Indexes for table `survey`
+--
+ALTER TABLE `survey`
+  ADD PRIMARY KEY (`survey_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- Indexes for table `tours`
+--
+ALTER TABLE `tours`
+  ADD PRIMARY KEY (`tour_id`),
+  ADD KEY `Client_ID` (`client_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `group_member`
+--
+ALTER TABLE `group_member`
+  MODIFY `member_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=465;
 --
 -- Constraints for dumped tables
 --
@@ -703,6 +845,12 @@ ALTER TABLE `group_member`
 --
 ALTER TABLE `incident`
   ADD CONSTRAINT `incident_ibfk_1` FOREIGN KEY (`Client_ID`) REFERENCES `client` (`Client_ID`);
+
+--
+-- Constraints for table `incident_details`
+--
+ALTER TABLE `incident_details`
+  ADD CONSTRAINT `incident_details_ibfk_1` FOREIGN KEY (`Incid_ID`) REFERENCES `incident` (`Incid_ID`);
 
 --
 -- Constraints for table `inventory`

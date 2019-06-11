@@ -22,11 +22,11 @@
           foreach (Part::getParts() as $row) {
             echo '
                 <tr>
-                  <td>' . $row['Part_ID'] . '</td>
-                  <td>' . $row['Supplier_ID'] . '</td>
-                  <td>' . $row['Part_Name'] . '</td>
-                  <td>' . $row['Run_Rate'] . '</td>
-                  <td>' . $row['Quantity'] . '</td>
+                  <td>' . $row['part_id'] . '</td>
+                  <td>' . $row['supplier_id'] . '</td>
+                  <td>' . $row['part_name'] . '</td>
+                  <td>' . $row['run_rate'] . '</td>
+                  <td>' . $row['quantity'] . '</td>
                 </tr>
               ';
           } ?>

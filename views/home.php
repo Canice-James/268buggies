@@ -92,11 +92,11 @@
             foreach (Home::getTours() as $row) {
               echo '
                   <tr>
-                    <td>' . $row['Tour_ID'] . '</td>
-                    <td>' . $row['Client_ID'] . '</td>
-                    <td>' . $row['Group_Tour'] . '</td>
-                    <td>' . $row['Route'] . '</td>
-                    <td>' . $row['Date'] . '</td>
+                    <td>' . $row['tour_id'] . '</td>
+                    <td>' . $row['client_id'] . '</td>
+                    <td>' . $row['group_tour'] . '</td>
+                    <td>' . $row['route'] . '</td>
+                    <td>' . $row['date'] . '</td>
                   </tr>
                 ';
             } ?>

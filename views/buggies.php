@@ -24,11 +24,11 @@
             foreach (Buggy::getBuggies() as $row) {
               echo '
                   <tr>
-                    <td>' . $row['Buggy_ID'] . '</td>
-                    <td>' . $row['Colour'] . '</td>
-                    <td>' . $row['Run_Duration'] . '</td>
-                    <td>' . $row['Run_Count'] . '</td>
-                    <td>' . $row['Run_Left'] . '</td>
+                    <td>' . $row['buggy_id'] . '</td>
+                    <td>' . $row['colour'] . '</td>
+                    <td>' . $row['run_duration'] . '</td>
+                    <td>' . $row['run_count'] . '</td>
+                    <td>' . $row['run_left'] . '</td>
                   </tr>
                 ';
             } ?>
