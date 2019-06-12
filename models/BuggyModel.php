@@ -16,20 +16,24 @@ class BuggyModel
 
   //C
   public static function create($id, $colour, $duration, $runCount, $runLeft){
-    $query = "INSERT INTO self::$table_name(Buggy_ID, Colour, Run_Duration, Run_Count, Run_Left)
+    $query = "INSERT INTO self::$table_name(buggy_id, colour, run_duration, run_count, run_left)
     VALUES('". $id ."', '". $colour ."', '". $duration ."', '". $runCount ."', '". $runLeft ."')";
 
     $stmt = self::$connection->query($query);
 
-    $dataReport = "";
+    $message = "";
+    $code = "";
 
     if($stmt === TRUE){
-      $dataReport = "Data Inserted Successfully";
+      $message = "Data Inserted Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    array("message"=> $message, "code"=>$code);
+    return $code;
   }
 
   //R
@@ -43,7 +47,7 @@ class BuggyModel
 
   //U
   public static function update($id, $colour, $duration, $runCount, $runLeft){
-    $query = "UPDATE self::$table_name SET Colour = '".$colour."', Run_Duration = '".$duration."', Run_Count = '".$runCount."', Run_Left = '".$runLeft."' WHERE Buggy_ID = '".$id."';";
+    $query = "UPDATE self::$table_name SET colour = '".$colour."', run_duration = '".$duration."', run_count = '".$runCount."', run_left = '".$runLeft."' WHERE buggy_id = '".$id."';";
     $stmt = self::$connection->query($query);
 
     $dataReport = "";
@@ -59,7 +63,7 @@ class BuggyModel
 
   //D
   public static function delete($id){
-    $query = "DELETE FROM self::$table_name WHERE Buggy_ID = '".$id."';";
+    $query = "DELETE FROM self::$table_name WHERE buggy_id = '".$id."';";
     $stmt = self::$connection->query($query);
 
     $dataReport = "";

@@ -1,13 +1,13 @@
 <?php
 
-class BuggyModel
+class PartModel
 {
 
   // Connection instance
   public static $connection;
 
   // table name
-  public static $table_name = "buggy";
+  public static $table_name = "part";
 
   public static function setConnection($connection)
   {

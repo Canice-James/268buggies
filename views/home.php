@@ -92,11 +92,11 @@
             foreach (Home::getTours() as $row) {
               echo '
                   <tr>
-                    <td>' . $row['Tour_ID'] . '</td>
-                    <td>' . $row['Client_ID'] . '</td>
-                    <td>' . $row['Group_Tour'] . '</td>
-                    <td>' . $row['Route'] . '</td>
-                    <td>' . $row['Date'] . '</td>
+                    <td>' . $row['tour_id'] . '</td>
+                    <td>' . $row['client_id'] . '</td>
+                    <td>' . $row['group_tour'] . '</td>
+                    <td>' . $row['route'] . '</td>
+                    <td>' . $row['date'] . '</td>
                   </tr>
                 ';
             } ?>
@@ -125,10 +125,10 @@
             foreach (Home::getIncidents() as $row) {
               echo '
                   <tr>
-                    <td>' . $row['Incid_ID'] . '</td>
-                    <td>' . $row['Incid_desc'] . '</td>
-                    <td>' . $row['Cause_of_Incid'] . '</td>
-                    <td>' . $row['Date'] . '</td>
+                    <td>' . $row['incid_id'] . '</td>
+                    <td>' . $row['incid_desc'] . '</td>
+                    <td>' . $row['cause_of_incid'] . '</td>
+                    <td>' . $row['date'] . '</td>
                   </tr>
                 ';
             } ?>

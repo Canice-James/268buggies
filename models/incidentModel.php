@@ -28,7 +28,7 @@ class IncidentModel
 
   public static function getOne($id)
   {
-    $query = 'SELECT * FROM ' . self::$table_name . 'WHERE Incid_ID =' . $id;
+    $query = 'SELECT * FROM ' . self::$table_name . 'WHERE incid_id =' . $id;
     $stmt = self::$connection->query($query);
     
     return $stmt;

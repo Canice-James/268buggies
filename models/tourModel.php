@@ -28,7 +28,7 @@ class TourModel
 
   public static function getOne($id)
   {
-    $query = 'SELECT * FROM ' . self::$table_name . 'WHERE Tour_ID =' . $id;
+    $query = 'SELECT * FROM ' . self::$table_name . 'WHERE tour_id =' . $id;
     $stmt = self::$connection->query($query);
     
     return $stmt;
