@@ -16,7 +16,7 @@ class PartModel
 
   //C
   public static function create($partId, $partName, $supplierID, $unitPrice, $runRate, $orderDate, $quantity){
-    $query = "INSERT INTO self::$table_name(Part_ID, Part_Name, Supplier_ID, Unit_Price, Run_Rate, Order_Date, Quantity)
+    $query = "INSERT INTO self::$table_name(part_id, part_name, supplier_id, unit_price, run_rate, order_date, quantity)
     VALUES('". $partId ."', '". $partName ."', '". $supplierID ."', '". $unitPrice ."', '". $runRate ."', '". $orderDate ."', '". $quantity ."')";
 
     $stmt = self::$connection->query($query);
@@ -41,12 +41,24 @@ class PartModel
     return $stmt;
   }
   //U
-  public static function update()
-  { }
-  
+  public static function update($partId, $partName, $supplierID, $unitPrice, $runRate, $orderDate, $quantity){
+    $query = "UPDATE self::$table_name SET part_name = '".$partName."', unit_price = '".$unitPrice."', run_rate = '".$runRate."', order_date = '".$orderDate."', quantity = '".$quantity."' WHERE part_id = '".$partId."';";
+    $stmt = self::$connection->query($query);
+
+    $dataReport = "";
+
+    if($stmt === TRUE){
+      $dataReport = "Data Updated Successfully";
+    }else{
+      $dataReport = "Data wasn't updated successfully!! Error: " . $query . "<br>" . self::$connection->error;
+    }
+
+    return $dataReport;
+  }
+
   //D
   public static function delete($partId){
-    $query = "DELETE FROM self::$table_name WHERE Buggy_ID = '".$id."';";
+    $query = "DELETE FROM self::$table_name WHERE part_id = '".$partId."';";
     $stmt = self::$connection->query($query);
 
     $dataReport = "";

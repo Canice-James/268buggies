@@ -15,8 +15,8 @@ class BuggyModel
   }
 
   //C
-  public static function create($id, $colour, $duration, $runCount, $runLeft){
-    $query = "INSERT INTO self::$table_name(buggy_id, colour, run_duration, run_count, run_left)
+  public static function create($id, $colour, $runCount, $runLeft){
+    $query = "INSERT INTO self::$table_name(buggy_id, colour, run_count, run_left)
     VALUES('". $id ."', '". $colour ."', '". $duration ."', '". $runCount ."', '". $runLeft ."')";
 
     $stmt = self::$connection->query($query);
@@ -46,8 +46,8 @@ class BuggyModel
   }
 
   //U
-  public static function update($id, $colour, $duration, $runCount, $runLeft){
-    $query = "UPDATE self::$table_name SET colour = '".$colour."', run_duration = '".$duration."', run_count = '".$runCount."', run_left = '".$runLeft."' WHERE buggy_id = '".$id."';";
+  public static function update($id, $colour, $runCount, $runLeft){
+    $query = "UPDATE self::$table_name SET colour = '".$colour."', run_count = '".$runCount."', run_left = '".$runLeft."' WHERE buggy_id = '".$id."';";
     $stmt = self::$connection->query($query);
 
     $dataReport = "";
