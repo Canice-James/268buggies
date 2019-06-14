@@ -6,9 +6,9 @@
   <div class="col-lg-12 col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Buggies</h4>
-        <p class="card-category"></p>
-        <button class="btn btn-primary pull-right"  data-toggle="modal" data-target="#create" type="submit">Create</button>
+        <h4 class="card-title d-inline">Buggies</h4>
+        <!-- <p class="card-category"></p> -->
+        <button class="btn btn-secondary pull-right" data-toggle="modal" data-target="#create" type="submit">Create</button>
 
       </div>
       <div class="card-body table-responsive">
@@ -47,18 +47,54 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Buggy</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        
+
+        <div class="form-group">
+          <label for="colour">Colour</label>
+          <input type="text" class="form-control" id="colour" >
+        </div>
+        <div class="form-group">
+          <label for="duration">duration</label>
+          <input type="text" class="form-control" id="duration">
+        </div>
+        <div class="form-group">
+          <label for="runCount">Run Count</label>
+          <input type="text" class="form-control" id="runCount" >
+        </div>
+        <div class="form-group">
+          <label for="runLeft">Run Left</label>
+          <input type="text" class="form-control" id="runLeft">
+        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" id="save" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+
+$( document ).ready(function() {
+
+  $("#save").click(function(){
+    var colour = $('#colour').val();
+    var duration = $('#duration').val();
+    var count = $('#runCount').val();
+    var runsLeft = $('#runLeft').val();
+
+
+    $()
+  });
+});
+     
+</script>
