@@ -16,7 +16,7 @@
           <thead class="text-info">
             <th>ID</th>
             <th>Client ID</th>
-            <th>Group Tour</th>
+            <!-- <th>Group Tour</th> -->
             <th>Route</th>
             <th>Date</th>
           </thead>
@@ -28,7 +28,7 @@
                   <tr>
                     <td>' . $row['buggy_id'] . '</td>
                     <td>' . $row['colour'] . '</td>
-                    <td>' . $row['run_duration'] . '</td>
+                    <!-- <td>' . $row['run_duration'] . '</td> -->
                     <td>' . $row['run_count'] . '</td>
                     <td>' . $row['run_left'] . '</td>
                   </tr>
@@ -59,10 +59,10 @@
           <label for="colour">Colour</label>
           <input type="text" class="form-control" id="colour" >
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="duration">duration</label>
           <input type="text" class="form-control" id="duration">
-        </div>
+        </div> -->
         <div class="form-group">
           <label for="runCount">Run Count</label>
           <input type="text" class="form-control" id="runCount" >
@@ -87,13 +87,26 @@
 $( document ).ready(function() {
 
   $("#save").click(function(){
-    var colour = $('#colour').val();
-    var duration = $('#duration').val();
-    var count = $('#runCount').val();
-    var runsLeft = $('#runLeft').val();
 
+    let buggy = {
+      colour: $('#colour').val(),
+      runCount: $('#runCount').val(),
+      runLeft: $('#runLeft').val()
+    }
+    
+    //alert(JSON.stringify(buggy))
+    $.post( "./api/BuggyController-addBuggy", buggy, function( res ) {
+      res = JSON.parse(res);
+      if (res.code == 200){
+        alert("success")
+        $('#create').modal('hide')
+        location.reload();
+      }
+      else {
+        alert(res.status_message)
+      }
+    });
 
-    $()
   });
 });
      

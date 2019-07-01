@@ -2,7 +2,7 @@
 class Database
 {
 
-  private $HOST = "localhost";
+  private $HOST = "127.0.0.1";
   private $USER = "root";
   private $PASSWORD = "";
   private $DATABASE = "268_buggies_dummy";
@@ -16,7 +16,7 @@ class Database
     $this->conn = null;
 
     try {
-
+      
       /* Attempt to connect to MySQL database */
       $this->conn = new PDO("mysql:host=$this->HOST;dbname=$this->DATABASE;charset=utf8mb4", $this->USER, $this->PASSWORD);
 

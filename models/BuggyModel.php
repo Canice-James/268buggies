@@ -16,15 +16,16 @@ class BuggyModel
 
   //C
   public static function create($id, $colour, $runCount, $runLeft){
-    $query = "INSERT INTO self::$table_name(buggy_id, colour, run_count, run_left)
-    VALUES('". $id ."', '". $colour ."', '". $duration ."', '". $runCount ."', '". $runLeft ."')";
+    $query = "INSERT INTO " . self::$table_name ."(buggy_id, colour, run_count, run_left)
+    VALUES('". $id ."', '". $colour ."', '". $runCount ."', '". $runLeft ."')";
 
-    $stmt = self::$connection->query($query);
+    $stmt = self::$connection->prepare($query);
+    // self::printErrors();
 
     $message = "";
     $code = "";
 
-    if($stmt === TRUE){
+    if($stmt->execute() === TRUE){
       $message = "Data Inserted Successfully";
       $code = 200;
     }else{
@@ -32,8 +33,10 @@ class BuggyModel
       $code = 500;
     }
 
-    array("message"=> $message, "code"=>$code);
-    return $code;
+
+    $res = array("message"=> $message, "code"=>$code);
+    // var_dump( $res);
+    return $res;
   }
 
   //R
@@ -75,5 +78,9 @@ class BuggyModel
     }
 
     return $dataReport;
+  }
+
+  public static function printErrors(){
+    var_dump(self::$connection->errorinfo(), TRUE);
   }
 }

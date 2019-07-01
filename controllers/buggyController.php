@@ -9,16 +9,15 @@ class Buggy extends Controller {
   }
 
   public static function addBuggy(){
-    
-    $data = json_decode(file_get_contents("php://input"));
 
-    $id = "testId";
-    $colour = $data->colour;
-    $duration = $data->duration;
-    $runCount = $data->runCount;
-    $runLeft = $data->runLeft;
+    $data = ($_POST);
+    // echo "body"; var_dump($_POST);
+    $id = Helper::uuid();
+    $colour = $data['colour'];
+    $runCount = $data['runCount'];
+    $runLeft = $data['runLeft'];
 
-    return BuggyModel::create($id, $colour, $duration, $runCount, $runLeft );
+    return BuggyModel::create($id, $colour, $runCount, $runLeft );
   }
 
 

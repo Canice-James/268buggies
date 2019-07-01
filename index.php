@@ -1,11 +1,13 @@
 <?php
-
 include_once './config/database.php';
+include_once './classes/route.php';
 
 $db = new Database();
 $connection = $db->getConnection();
 
 spl_autoload_register(function ($class_name) use ($connection){
+  //echo var_dump($class_name);
+ 
   if (file_exists('./classes/'.$class_name.'.php')) {
     require_once './classes/'.$class_name.'.php';
   }
