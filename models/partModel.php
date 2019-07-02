@@ -15,21 +15,24 @@ class PartModel
   }
 
   //C
-  public static function create($partId, $partName, $supplierID, $unitPrice, $runRate, $orderDate, $quantity){
-    $query = "INSERT INTO self::$table_name(part_id, part_name, supplier_id, unit_price, run_rate, order_date, quantity)
-    VALUES('". $partId ."', '". $partName ."', '". $supplierID ."', '". $unitPrice ."', '". $runRate ."', '". $orderDate ."', '". $quantity ."')";
+  public static function create($partId, $partName, $supplierId, $unitPrice, $runRate, $orderDate, $quantity){
+    $query = "INSERT INTO " . self::$table_name . "(part_id, part_name, supplier_id, unit_price, run_rate, order_date, quantity)
+    VALUES('". $partId ."', '". $partName ."', '". $supplierId ."', ". $unitPrice .", ". $runRate .", '". $orderDate ."', ". $quantity .")";
 
-    $stmt = self::$connection->query($query);
+    $stmt = self::$connection->prepare($query);
 
-    $dataReport = "";
+    $message = "";
+    $code = "";
 
-    if($stmt === TRUE){
-      $dataReport = "Data Inserted Successfully";
+    if($stmt->execute() === TRUE){
+      $message = "Data Inserted Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    return array("message"=> $message, "code"=>$code);
   }
 
   //R
@@ -40,35 +43,54 @@ class PartModel
 
     return $stmt;
   }
-  //U
-  public static function update($partId, $partName, $supplierID, $unitPrice, $runRate, $orderDate, $quantity){
-    $query = "UPDATE self::$table_name SET part_name = '".$partName."', unit_price = '".$unitPrice."', run_rate = '".$runRate."', order_date = '".$orderDate."', quantity = '".$quantity."' WHERE part_id = '".$partId."';";
+
+  public static function getOne($id)
+  {
+    $query = 'SELECT * FROM ' . self::$table_name . ' WHERE ' . self::$table_name  . '_id="'. $id .'";';
     $stmt = self::$connection->query($query);
 
-    $dataReport = "";
+    return $stmt;
+  }
 
-    if($stmt === TRUE){
-      $dataReport = "Data Updated Successfully";
+  //U
+  public static function update($partId, $partName, $supplierId, $unitPrice, $runRate, $orderDate, $quantity){
+    $query = "UPDATE " . self::$table_name . " SET part_name = '".$partName."', unit_price = '".$unitPrice."', run_rate = '".$runRate."', order_date = ".$orderDate.", quantity = '".$quantity."' WHERE part_id = '".$partId."';";
+    $stmt = self::$connection->prepare($query);
+
+    $message = "";
+    $code = "";
+
+    if($stmt->execute() === TRUE){
+      $message = "Data Inserted Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't updated successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    return array("message"=> $message, "code"=>$code);
   }
 
   //D
   public static function delete($partId){
-    $query = "DELETE FROM self::$table_name WHERE part_id = '".$partId."';";
-    $stmt = self::$connection->query($query);
+    $query = "DELETE FROM " . self::$table_name . " WHERE part_id = '".$partId."';";
+    $stmt = self::$connection->prepare($query);
 
-    $dataReport = "";
+    $message = "";
+    $code = "";
 
-    if($stmt === TRUE){
-      $dataReport = "Data Deleted Successfully";
+    if($stmt->execute() === TRUE){
+      $message = "Data Inserted Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't deleted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't inserted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    return array("message"=> $message, "code"=>$code);
+  }
+
+  public static function printErrors(){
+    var_dump(self::$connection->errorinfo(), TRUE);
   }
 }

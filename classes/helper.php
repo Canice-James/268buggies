@@ -18,6 +18,14 @@ class Helper {
 
     return substr($uid, 0, $len);
   }
+
+  public static function getDate(){
+    $date = date('Y-m-d');
+    return $date;
+  }
+
 }
+
+
 
 ?>

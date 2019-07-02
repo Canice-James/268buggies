@@ -1,4 +1,7 @@
 <?php
+
+date_default_timezone_set('America/Antigua');
+
 include_once './config/database.php';
 include_once './classes/route.php';
 
