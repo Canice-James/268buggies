@@ -28,15 +28,15 @@
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="./user.html">
-          <i class="material-icons">person</i>
-          <p>User Profile</p>
+        <a class="nav-link" href="./tours">
+          <i class="material-icons">map</i>
+          <p>Tours</p>
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="./tables.html">
-          <i class="material-icons">content_paste</i>
-          <p>Table List</p>
+        <a class="nav-link" href="./clients">
+          <i class="material-icons">person</i>
+          <p>Clients</p>
         </a>
       </li>
       <li class="nav-item ">

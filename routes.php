@@ -17,5 +17,12 @@
     Buggy::CreateView('buggies', null, 'default');
   });
 
+    //Set Route 
+    Route::set('tours', function() {
+      //Add variables into an array and pass that array of data into the page
+      Buggy::CreateView('tours', null, 'default');
+    });
+
+
   require_once("./api.php"); //Load view
 ?>
