@@ -48,36 +48,51 @@ class BuggyModel
     return $stmt;
   }
 
-  //U
-  public static function update($id, $colour, $runCount, $runLeft){
-    $query = "UPDATE self::$table_name SET colour = '".$colour."', run_count = '".$runCount."', run_left = '".$runLeft."' WHERE buggy_id = '".$id."';";
+  public static function getOne($id)
+  {
+    $query = 'SELECT * FROM ' . self::$table_name .' WHERE ' .self::$table_name . "_id='$id'";
     $stmt = self::$connection->query($query);
 
-    $dataReport = "";
+    return $stmt;
+  }
 
-    if($stmt === TRUE){
-      $dataReport = "Data Updated Successfully";
+  //U
+  public static function update($id, $colour, $runCount, $runLeft){
+    $query = "UPDATE ". self::$table_name ." SET colour='".$colour."', run_count='".$runCount."', run_left='".$runLeft."' WHERE buggy_id='".$id."'";
+    $stmt = self::$connection->prepare($query);
+
+    $message = "";
+    $code = "";
+
+    if($stmt->execute() === TRUE){
+      $message = "Data Updated Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't updated successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't updated successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    return array("message"=> $message, "code"=>$code);
   }
 
   //D
   public static function delete($id){
-    $query = "DELETE FROM self::$table_name WHERE buggy_id = '".$id."';";
-    $stmt = self::$connection->query($query);
+    $query = "DELETE FROM ". self::$table_name ." WHERE buggy_id='".$id."';";
+    $stmt = self::$connection->prepare($query);
 
-    $dataReport = "";
+    $message = "";
+    $code = "";
 
-    if($stmt === TRUE){
-      $dataReport = "Data Deleted Successfully";
+    if($stmt->execute() === TRUE){
+      $message = "Data Updated Successfully";
+      $code = 200;
     }else{
-      $dataReport = "Data wasn't deleted successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $message = "Data wasn't updated successfully!! Error: " . $query . "<br>" . self::$connection->error;
+      $code = 500;
     }
 
-    return $dataReport;
+    $res = array("message"=> $message, "code"=>$code);
+    return $res;
   }
 
   public static function printErrors(){
