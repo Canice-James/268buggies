@@ -62,7 +62,7 @@ CREATE TABLE `buggy` (
 
 LOCK TABLES `buggy` WRITE;
 /*!40000 ALTER TABLE `buggy` DISABLE KEYS */;
-INSERT INTO `buggy` VALUES ('10','Zebra',10,2),('11','Zed',19,19),('12','Zed',19,19),('13','Zed',19,19),('14','Riv',9,9),('15','Gold',1,1),('1XnHSPS3','y',24333434,43434),('4LE8PQYZ','fftgv',666,565),('5','Hot Red',1,1),('501','Red',1,3),('502','Blue',2,2),('503','Green',1,3),('504','Yellow',3,1),('505','White',3,1),('5O3AvMsS','y',24333434,43434),('6','Zebra',10,2),('7','Zebra',10,2),('7mi6Mid2','y',24333434,43434),('8','Zebra',10,2),('9','Zebra',10,2),('ARYI7qL3','666',666,565),('b8l0JXx2','66',66,66),('cSThmxis','y',24333434,43434),('DAFCytIV','y',24333434,43434),('f0jIkXiO','64',66,66),('HAgvBzSf','y',24333434,43434),('hiTcrFsg','44',4455,66),('HLXXZpqh','y',24333434,43434),('KUM8rxAl','y',24333434,43434),('RK1AfhFH','y',24333434,43434),('su2n9qro','44',44,44),('TiBCmcpR','y',24333434,43434),('UgWgXEkz','44',44,44),('XjLDdFxi','66',66,66),('Y1xhHl7k','y',24333434,43434);
+INSERT INTO `buggy` VALUES ('10','Zebra',24333434,43434),('11','Zed',19,19),('12','Zed',19,19),('13','Zed',19,19),('14','Riv',9,9),('15','Gold',1,1),('5','Hot Red',1,1),('501','Red',1,3),('502','Blue',2,2),('503','Green',1,3),('504','Yellow',3,1),('505','White',3,1),('6','Zebra',10,2),('7','Zebra',10,2),('8','Zebra',10,2),('9','Zebra',10,2),('DAFCytIV','y',24333434,43434),('f0jIkXiO','64',66,66),('HAgvBzSf','y',24333434,43434),('hiTcrFsg','44',4455,66),('HLXXZpqh','y',24333434,43434),('KUM8rxAl','y',24333434,43434),('RK1AfhFH','y',24333434,43434),('su2n9qro','44',44,44),('TiBCmcpR','y',24333434,43434),('UgWgXEkz','44',44,44),('uVsLWISQ','y',24333434,43434),('XjLDdFxi','66',66,66),('Y1xhHl7k','y',24333434,43434);
 /*!40000 ALTER TABLE `buggy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -453,11 +453,11 @@ DROP TABLE IF EXISTS `part`;
 CREATE TABLE `part` (
   `part_id` varchar(8) NOT NULL,
   `part_name` varchar(30) NOT NULL,
-  `supplier_id` varchar(8) NOT NULL,
-  `unit_price` double(8,2) NOT NULL,
+  `supplier_id` varchar(8) DEFAULT NULL,
+  `unit_price` double(8,2) DEFAULT NULL,
   `run_rate` int(11) NOT NULL,
-  `order_date` date NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `order_date` date DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
   PRIMARY KEY (`part_id`),
   KEY `Supplier_ID` (`supplier_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -469,7 +469,7 @@ CREATE TABLE `part` (
 
 LOCK TABLES `part` WRITE;
 /*!40000 ALTER TABLE `part` DISABLE KEYS */;
-INSERT INTO `part` VALUES ('980','part 1','578',98.00,4,'2019-03-19',3),('981','part 2','578',88.00,4,'2019-03-19',5),('982','part 3','578',75.00,4,'2019-02-18',7),('983','part 4','581',100.00,5,'2019-03-02',2),('984','part 5','581',110.00,5,'2019-03-10',3),('985','part 6','580',50.00,4,'2019-02-19',7),('986','part 7','579',39.00,3,'2019-03-19',8);
+INSERT INTO `part` VALUES ('980','part 11','578',98.00,4,NULL,3),('981','part 2','578',88.00,4,'2019-03-19',5),('982','part 3','578',75.00,4,'2019-02-18',7),('983','part 4','581',100.00,5,'2019-03-02',2),('984','part 5','581',110.00,5,'2019-03-10',3),('985','part 6','580',50.00,4,'2019-02-19',7),('986','part 7','579',39.00,3,'2019-03-19',8);
 /*!40000 ALTER TABLE `part` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -628,4 +628,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-01  3:58:16
+-- Dump completed on 2019-07-02  4:21:28
