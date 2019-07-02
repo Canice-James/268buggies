@@ -1,11 +1,13 @@
 <?php 
 
 class Controller {
-  public static function CreateView($viewName, $data=null, $layout=null){
+  public static function CreateView($viewName, $data=array(), $layout=null){
+    
+    $data['view'] = "$viewName";
     if ($layout != null){ //If using layout run output buffering
       ob_start(); 
     } 
-
+    
     require_once("./views/$viewName.php"); //Load view
 
     if ($layout != null){ //If using layout run output buffering

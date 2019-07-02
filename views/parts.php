@@ -238,6 +238,8 @@ $( document ).ready(function() {
     });
   });
 
+  
+
 });
 
 function editRecord(id){

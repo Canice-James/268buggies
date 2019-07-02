@@ -218,6 +218,9 @@
     // Javascript method's body can be found in assets/js/demos.js
     md.initDashboardPageCharts();
 
+    //Highlight active page on sidebar
+    $('.nav .active').removeClass('active');
+    $(".<?php echo $data['view'] ?>-nav-item").addClass("active");
   });
 </script>
 

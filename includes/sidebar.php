@@ -9,19 +9,19 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item active  ">
+      <li class="nav-item home-nav-item">
         <a class="nav-link" href="./">
           <i class="material-icons">dashboard</i>
           <p>Dashboard</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="./buggies">
+      <li class="nav-item buggies-nav-item">
+        <a class="nav-link " href="./buggies">
           <i class="material-icons">directions_car</i>
           <p>Buggies</p>
         </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item parts-nav-item">
         <a class="nav-link" href="./parts">
           <i class="material-icons">settings</i>
           <p>Parts</p>
