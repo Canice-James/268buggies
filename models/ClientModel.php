@@ -20,7 +20,6 @@ class ClientModel
     VALUES('". $client_id ."', '". $client_fname ."', '". $client_lname ."', '". $client_addr ."', '". $client_dob ."', '". $client_phone ."', '". $client_emerg_contact ."', '". $client_emerg_contact_num ."', '". $type ."')";
 
     $stmt = self::$connection->prepare($query);
-    // self::printErrors();
 
     $message = "";
     $code = "";
@@ -33,6 +32,8 @@ class ClientModel
       $code = 500;
     }
 
+
+    self::printErrors();
 
     $res = array("message"=> $message, "code"=>$code);
     // var_dump( $res);
@@ -58,7 +59,7 @@ class ClientModel
 
   //U
   public static function update($client_id, $client_fname, $client_lname, $client_addr, $client_dob, $client_phone, $client_emerg_contact, $client_emerg_contact_num, $type){
-    $query = "UPDATE ". self::$table_name ." SET client_id='".$client_id."', client_fname='".$client_fname."', client_lname='".$client_lname."', client_addr='".$client_addr."', client_dob='".$client_dob."', client_phone='".$client_phone."', client_emerg_contact='".$client_emerg_contact."', client_emerg_contact_num='".$client_emerg_contact_num."', type='".$type."' WHERE client_id='".$client_id."'";
+    $query = "UPDATE ". self::$table_name ." SET client_fname='".$client_fname."', client_lname='".$client_lname."', client_addr='".$client_addr."', client_dob='".$client_dob."', client_phone='".$client_phone."', client_emerg_contact='".$client_emerg_contact."', client_emerg_contact_num='".$client_emerg_contact_num."', type='".$type."' WHERE client_id='".$client_id."'";
     $stmt = self::$connection->prepare($query);
 
     $message = "";

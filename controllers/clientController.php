@@ -3,7 +3,7 @@
 class Client extends Controller {
 
 
-  public static function get(){
+  public static function getAll(){
     
     return ClientModel::getAll();
   }
@@ -18,13 +18,13 @@ class Client extends Controller {
     $data = ($_POST);
     // echo "body"; var_dump($_POST);
     $client_id = Helper::uuid();
-    $client_fname = $data['client_fname'];
-    $client_lname = $data['client_lname'];
-    $client_addr = $data['client_addr'];
-    $client_dob = $data['client_dob'];
-    $client_phone = $data['client_phone'];
-    $client_emerg_contact = $data['client_emerg_contact'];
-    $client_emerg_contact_num = $data['client_emerg_contact_num'];
+    $client_fname = $data['firstName'];
+    $client_lname = $data['lastName'];
+    $client_addr = $data['address'];
+    $client_dob = $data['dob'];
+    $client_phone = $data['phone'];
+    $client_emerg_contact = $data['emergContact'];
+    $client_emerg_contact_num = $data['emergContactNum'];
     $type = $data['type'];
 
     return ClientModel::create($client_id, $client_fname, $client_lname, $client_addr, $client_dob, $client_phone, $client_emerg_contact, $client_emerg_contact_num, $type);
@@ -34,16 +34,17 @@ class Client extends Controller {
 
     $data = ($_POST);
     // echo "body"; var_dump($_POST);
-    $client_id = $data['client_id'];
-    $client_fname = $data['client_fname'];
-    $client_lname = $data['client_lname'];
-    $client_addr = $data['client_addr'];
-    $client_dob = $data['client_dob'];
-    $client_phone = $data['client_phone'];
-    $client_emerg_contact = $data['client_emerg_contact'];
-    $client_emerg_contact_num = $data['client_emerg_contact_num'];
+    $client_id = $data['id'];
+    $client_fname = $data['firstName'];
+    $client_lname = $data['lastName'];
+    $client_addr = $data['address'];
+    $client_dob = $data['dob'];
+    $client_phone = $data['phone'];
+    $client_emerg_contact = $data['emergContact'];
+    $client_emerg_contact_num = $data['emergContactNum'];
     $type = $data['type'];
 
+    var_dump($client_id);
     return ClientModel::update($client_id, $client_fname, $client_lname, $client_addr, $client_dob, $client_phone, $client_emerg_contact, $client_emerg_contact_num, $type);
   }
 

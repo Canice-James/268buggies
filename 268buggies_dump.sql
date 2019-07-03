@@ -62,7 +62,7 @@ CREATE TABLE `buggy` (
 
 LOCK TABLES `buggy` WRITE;
 /*!40000 ALTER TABLE `buggy` DISABLE KEYS */;
-INSERT INTO `buggy` VALUES ('10','Zebra',24333434,43434),('11','Zed',19,19),('12','Zed',19,19),('13','Zed',19,19),('14','Riv',9,9),('15','Gold',1,1),('5','Hot Red',1,1),('501','Red',1,3),('502','Blue',2,2),('503','Green',1,3),('504','Yellow',3,1),('505','White',3,1),('6','Zebra',10,2),('7','Zebra',10,2),('8','Zebra',10,2),('9','Zebra',10,2),('DAFCytIV','y',24333434,43434),('f0jIkXiO','64',66,66),('HAgvBzSf','y',24333434,43434),('hiTcrFsg','44',4455,66),('HLXXZpqh','y',24333434,43434),('KUM8rxAl','y',24333434,43434),('RK1AfhFH','y',24333434,43434),('su2n9qro','44',44,44),('TiBCmcpR','y',24333434,43434),('UgWgXEkz','44',44,44),('uVsLWISQ','y',24333434,43434),('XjLDdFxi','66',66,66),('Y1xhHl7k','y',24333434,43434);
+INSERT INTO `buggy` VALUES ('10','Zebrachanged',24333434,43434),('11','Zed',19,19),('12','Zed',19,19),('13','Zed',19,19),('14','Riv',9,9),('15','Gold',1,1),('5','Hot Red',1,1),('501','Red',1,3),('502','Blue',2,2),('503','Green',1,3),('504','Yellow',3,1),('505','White',3,1),('6','Zebra',10,2),('7','Zebra',10,2),('8','Zebra',10,2),('9','Zebra',10,2),('DAFCytIV','y',24333434,43434),('f0jIkXiO','64',66,66),('HAgvBzSf','y',24333434,43434),('hiTcrFsg','44',4455,66),('HLXXZpqh','y',24333434,43434),('KUM8rxAl','y',24333434,43434),('RK1AfhFH','y',24333434,43434),('su2n9qro','44',44,44),('TiBCmcpR','y',24333434,43434),('UgWgXEkz','44',44,44),('uVsLWISQ','y',24333434,43434),('XjLDdFxi','66',66,66),('Y1xhHl7k','y',24333434,43434);
 /*!40000 ALTER TABLE `buggy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +127,7 @@ DROP TABLE IF EXISTS `client`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client` (
-  `client_id` int(6) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
   `client_fname` varchar(30) NOT NULL,
   `client_lname` varchar(30) NOT NULL,
   `client_addr` varchar(50) NOT NULL,
@@ -146,7 +146,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (5,'Dayne','Gonsalves','Paynters Estate','1993-10-06','1-268-720-1006','DCL','1-268-720-8611','DL'),(6,'Lynette','Saygon','Paynters Estate','1974-08-11','1-268-720-8611','Sugar Ridge','1-268-561-3218','VIP'),(101,'Larry','Bird','Texas','1997-09-14','(268) 770-9090','Sandals','(268) 460-8990','unsure'),(102,'Brett','Henry','Florida','1994-01-20','(268) 770-7788','Sandals','(268) 460-8990','unsure'),(103,'Chris','Josiah','Colorado','1995-06-07','(268) 772-3434','Sister','(268) 779-8911','unsure'),(104,'Jess','Adams','New York','1993-07-01','(268) 778-8899','Verandah','(268) 462-5959','unsure'),(105,'Lori','James','Florida','1996-04-20','(268) 779-0123','Verandah','(268) 462-5959','unsure');
+INSERT INTO `client` VALUES ('101','Larry','Bird','Texas','1997-09-14','(268) 770-9090','Sandals','(268) 460-8990','unsure'),('102','Brett','Henry','Florida','1994-01-20','(268) 770-7788','Sandals','(268) 460-8990','unsure'),('103','Chris','Josiah','Colorado','1995-06-07','(268) 772-3434','Sister','(268) 779-8911','unsure'),('104','Jess','Adams','New York','1993-07-01','(268) 778-8899','Verandah','(268) 462-5959','unsure'),('105','Lori','James','Florida','1996-04-20','(268) 779-0123','Verandah','(268) 462-5959','unsure'),('5','Dayne','Gonsalves','Paynters Estate','1993-10-06','1-268-720-1006','DCL','1-268-720-8611','DL'),('6','Lynette','Saygon','Paynters Estate','1974-08-11','1-268-720-8611','Sugar Ridge','1-268-561-3218','VIP'),('6uTYLyb5','jonnnnnnnn','snow','erfergergg','2019-07-06','23923','jwjhjh','28384','');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,12 +158,10 @@ DROP TABLE IF EXISTS `client_agent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client_agent` (
-  `agent_id` int(6) NOT NULL,
-  `client_id` int(6) NOT NULL,
+  `agent_id` varchar(8) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
   KEY `Agent_ID` (`agent_id`),
-  KEY `Client_ID` (`client_id`),
-  CONSTRAINT `client_agent_ibfk_1` FOREIGN KEY (`agent_id`) REFERENCES `agent` (`agent_id`),
-  CONSTRAINT `client_agent_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
+  KEY `Client_ID` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -173,7 +171,7 @@ CREATE TABLE `client_agent` (
 
 LOCK TABLES `client_agent` WRITE;
 /*!40000 ALTER TABLE `client_agent` DISABLE KEYS */;
-INSERT INTO `client_agent` VALUES (29,101),(29,102),(30,104),(30,105);
+INSERT INTO `client_agent` VALUES ('29','101'),('29','102'),('30','104'),('30','105');
 /*!40000 ALTER TABLE `client_agent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,15 +183,12 @@ DROP TABLE IF EXISTS `client_incident`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client_incident` (
-  `client_id` int(6) NOT NULL,
-  `tour_id` int(6) NOT NULL,
-  `incid_id` int(6) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
+  `tour_id` varchar(8) NOT NULL,
+  `incid_id` varchar(8) NOT NULL,
   KEY `client_id` (`client_id`) USING BTREE,
   KEY `incid_id` (`incid_id`) USING BTREE,
-  KEY `tour_id` (`tour_id`) USING BTREE,
-  CONSTRAINT `client_incident_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
-  CONSTRAINT `client_incident_ibfk_2` FOREIGN KEY (`incid_id`) REFERENCES `incident` (`incid_id`),
-  CONSTRAINT `client_incident_ibfk_3` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`)
+  KEY `tour_id` (`tour_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,7 +198,7 @@ CREATE TABLE `client_incident` (
 
 LOCK TABLES `client_incident` WRITE;
 /*!40000 ALTER TABLE `client_incident` DISABLE KEYS */;
-INSERT INTO `client_incident` VALUES (101,11,1001),(105,15,1002);
+INSERT INTO `client_incident` VALUES ('101','11','1001'),('105','15','1002');
 /*!40000 ALTER TABLE `client_incident` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,12 +210,10 @@ DROP TABLE IF EXISTS `client_promotion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `client_promotion` (
-  `promo_id` int(6) NOT NULL,
-  `client_id` int(6) NOT NULL,
+  `promo_id` varchar(8) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
   KEY `Promo_ID` (`promo_id`),
-  KEY `Client_ID` (`client_id`),
-  CONSTRAINT `client_promotion_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
-  CONSTRAINT `client_promotion_ibfk_2` FOREIGN KEY (`promo_id`) REFERENCES `promotion` (`promo_id`)
+  KEY `Client_ID` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -230,7 +223,7 @@ CREATE TABLE `client_promotion` (
 
 LOCK TABLES `client_promotion` WRITE;
 /*!40000 ALTER TABLE `client_promotion` DISABLE KEYS */;
-INSERT INTO `client_promotion` VALUES (201,101),(202,104),(203,103),(204,105);
+INSERT INTO `client_promotion` VALUES ('201','101'),('202','104'),('203','103'),('204','105');
 /*!40000 ALTER TABLE `client_promotion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,13 +293,12 @@ DROP TABLE IF EXISTS `equipment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `equipment` (
-  `equip_id` int(6) NOT NULL,
-  `client_id` int(6) NOT NULL,
+  `equip_id` varchar(8) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
   `equip_type` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`equip_id`),
-  KEY `Client_ID` (`client_id`),
-  CONSTRAINT `equipment_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
+  KEY `Client_ID` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -316,7 +308,7 @@ CREATE TABLE `equipment` (
 
 LOCK TABLES `equipment` WRITE;
 /*!40000 ALTER TABLE `equipment` DISABLE KEYS */;
-INSERT INTO `equipment` VALUES (301,101,'Safety',4),(302,102,'Safety',4),(303,103,'Safety',2),(304,104,'Safety',4),(305,105,'Safety',2);
+INSERT INTO `equipment` VALUES ('301','101','Safety',4),('302','102','Safety',4),('303','103','Safety',2),('304','104','Safety',4),('305','105','Safety',2);
 /*!40000 ALTER TABLE `equipment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,9 +330,7 @@ CREATE TABLE `group_member` (
   `tour_id` int(6) DEFAULT NULL,
   PRIMARY KEY (`member_id`),
   KEY `Client_ID` (`client_id`),
-  KEY `TID_FK` (`tour_id`),
-  CONSTRAINT `group_member_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
-  CONSTRAINT `group_member_ibfk_2` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`)
+  KEY `TID_FK` (`tour_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=465 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -362,16 +352,15 @@ DROP TABLE IF EXISTS `incident`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `incident` (
-  `incid_id` int(6) NOT NULL,
-  `client_id` int(6) NOT NULL,
+  `incid_id` varchar(8) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
   `incid_desc` varchar(100) NOT NULL,
   `cause_of_incid` varchar(100) NOT NULL,
   `recom` varchar(100) NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   PRIMARY KEY (`incid_id`),
-  KEY `Client_ID` (`client_id`),
-  CONSTRAINT `incident_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
+  KEY `Client_ID` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -381,7 +370,7 @@ CREATE TABLE `incident` (
 
 LOCK TABLES `incident` WRITE;
 /*!40000 ALTER TABLE `incident` DISABLE KEYS */;
-INSERT INTO `incident` VALUES (1001,101,'Flat tire','fjeiinwokeje ekkwoo oo iine','blah blah blah','2019-01-03','18:10:16'),(1002,105,'Buggy Stuck','Driver','blah blah blah','2019-02-20','16:29:13');
+INSERT INTO `incident` VALUES ('1001','101','Flat tire','fjeiinwokeje ekkwoo oo iine','blah blah blah','2019-01-03','18:10:16'),('1002','105','Buggy Stuck','Driver','blah blah blah','2019-02-20','16:29:13');
 /*!40000 ALTER TABLE `incident` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -393,8 +382,8 @@ DROP TABLE IF EXISTS `incident_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `incident_details` (
-  `incid_detail_id` int(6) NOT NULL,
-  `incid_id` int(6) NOT NULL,
+  `incid_detail_id` varchar(8) NOT NULL,
+  `incid_id` varchar(8) NOT NULL,
   `witness_present` tinyint(1) NOT NULL,
   `witness_fname` varchar(30) NOT NULL,
   `witness_lname` varchar(30) NOT NULL,
@@ -404,8 +393,7 @@ CREATE TABLE `incident_details` (
   `equip_type` varchar(100) NOT NULL,
   `equipment_training` tinyint(1) NOT NULL,
   PRIMARY KEY (`incid_detail_id`),
-  KEY `Incid_ID` (`incid_id`),
-  CONSTRAINT `incident_details_ibfk_1` FOREIGN KEY (`incid_id`) REFERENCES `incident` (`incid_id`)
+  KEY `Incid_ID` (`incid_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -415,7 +403,7 @@ CREATE TABLE `incident_details` (
 
 LOCK TABLES `incident_details` WRITE;
 /*!40000 ALTER TABLE `incident_details` DISABLE KEYS */;
-INSERT INTO `incident_details` VALUES (678,1001,1,'James','Parker',1,1,1,'Safety',1),(679,1002,1,'Jane','Hurst',1,1,1,'Safety',1);
+INSERT INTO `incident_details` VALUES ('678','1001',1,'James','Parker',1,1,1,'Safety',1),('679','1002',1,'Jane','Hurst',1,1,1,'Safety',1);
 /*!40000 ALTER TABLE `incident_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -486,8 +474,7 @@ CREATE TABLE `promotion` (
   `promo_desc` varchar(50) NOT NULL,
   `promo_code` int(11) NOT NULL,
   PRIMARY KEY (`promo_id`),
-  KEY `Client_ID` (`client_id`),
-  CONSTRAINT `promotion_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
+  KEY `Client_ID` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -571,8 +558,7 @@ CREATE TABLE `survey` (
   `survey_advert` char(1) NOT NULL DEFAULT 'N',
   `survey_money_value` char(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`survey_id`),
-  KEY `Client_ID` (`client_id`),
-  CONSTRAINT `survey_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
+  KEY `Client_ID` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -594,8 +580,8 @@ DROP TABLE IF EXISTS `tours`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tours` (
-  `tour_id` int(6) NOT NULL,
-  `client_id` int(6) NOT NULL,
+  `tour_id` varchar(8) NOT NULL,
+  `client_id` varchar(8) NOT NULL,
   `group_tour` char(1) NOT NULL DEFAULT 'N',
   `route` varchar(30) NOT NULL,
   `date` date NOT NULL,
@@ -615,7 +601,7 @@ CREATE TABLE `tours` (
 
 LOCK TABLES `tours` WRITE;
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
-INSERT INTO `tours` VALUES (11,101,'Y','South','2019-01-03','17:19:16',200.00,7,1,6),(12,102,'Y','South','2019-03-01','11:10:59',200.00,7,1,6),(13,103,'N','North','2019-02-14','13:15:07',150.00,7,1,3),(14,104,'Y','East','2019-01-19','10:20:18',190.00,7,1,6),(15,105,'N','North','2019-02-20','15:19:49',150.00,7,1,3);
+INSERT INTO `tours` VALUES ('11','101','Y','South','2019-01-03','17:19:16',200.00,7,1,6),('12','102','Y','South','2019-03-01','11:10:59',200.00,7,1,6),('13','103','N','North','2019-02-14','13:15:07',150.00,7,1,3),('14','104','Y','East','2019-01-19','10:20:18',190.00,7,1,6),('15','105','N','North','2019-02-20','15:19:49',150.00,7,1,3),('ehTnKqXy','44','1','44','2019-07-04','12:30:00',44.00,1,1,1),('XsB2GyA2','44','1','44','2019-07-04','12:30:00',44.00,1,1,1);
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -628,4 +614,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-02  4:21:28
+-- Dump completed on 2019-07-03 19:29:52

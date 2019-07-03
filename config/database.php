@@ -5,7 +5,7 @@ class Database
   private $HOST = "127.0.0.1";
   private $USER = "root";
   private $PASSWORD = "";
-  private $DATABASE = "268_buggies";
+  private $DATABASE = "268_buggies_dummy";
 
   public $conn;
 

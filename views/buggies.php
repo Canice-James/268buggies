@@ -160,6 +160,65 @@
 </div>
 <!-- END DELETE MODAL -->
 
+
+<!-- START PARTS MODAL -->
+<div class="modal fade" id="parts" tabindex="-1" role="dialog" aria-labelledby="parts" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" > Buggy Parts</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+      <table id="parts" class="table table-hover">
+          <thead class="text-info">
+            <th>PartId</th>
+            <th>Part Name</th>
+            <th>Runs</th>
+            <th>Runs Left</th>
+            <th></th>
+          </thead>
+          <tbody>
+
+            <?php
+
+
+            foreach (Buggy::getParts() as $row) {
+              echo '
+                  <tr>
+                    <td>' . $row['part_id'] . '</td>
+                    <td>' . $row['part_name'] . '</td>
+                    <td>' . $row['run_rate'] . '</td>
+                    <td>' . $row['run_left'] . '</td>
+                    <td>
+                      <button onclick="viewParts(\'' . $row['buggy_id'] . '\')" class="btn btn-parts  edit-btn" data-toggle="modal" data-target="#parts" type="submit">Parts</button>
+
+                      <button onclick="editRecord(\'' . $row['buggy_id'] . '\')" class="btn btn-secoundary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
+                    
+                      <button onclick="deleteRecord(\'' . $row['buggy_id'] . '\')" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
+                    </td>
+                  </tr>
+                ';
+            } ?>
+
+          </tbody>
+        </table>
+      
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="save" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END PARTS MODAL -->
+
+
 <script>
 
 $( document ).ready(function() {
@@ -242,6 +301,33 @@ function editRecord(id){
 
 function deleteRecord(id){
   $('#delete #id').val(id)
+}
+
+
+function getParts(id){
+  
+  $.get( "./api/buggies/getparts", {"id": id}, function( res ) {
+    res = JSON.parse(res);
+
+    var table = $("#parts tbody");
+
+    $.each(res, function(idx, elem){
+        table.append(` <tr><td> ${elem.part_id} </td>
+          <td>  ${elem.part_name} </td>
+          <td> ${elem.run_rate} </td>
+          <td> ${elem.run_left} </td>
+          <td>
+            <button onclick="viewParts(' ${buggy_id} ')" class="btn btn-parts  edit-btn" data-toggle="modal" data-target="#parts" type="submit">Parts</button>
+
+            <button onclick="editRecord(' ${buggy_id} ')" class="btn btn-secoundary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
+          
+            <button onclick="deleteRecord(' ${buggy_id} ')" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
+          </td>
+        </tr>
+         `);
+    });
+    
+  });
 }
 
 </script>

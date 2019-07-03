@@ -13,6 +13,11 @@ class Buggy extends Controller {
     return BuggyModel::getOne($id);
   }
 
+  public static function getParts($buggyId){
+    
+    return BuggyModel::getAllParts($buggyId);
+  }
+
   public static function addBuggy(){
 
     $data = ($_POST);

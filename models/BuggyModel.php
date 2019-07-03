@@ -48,6 +48,17 @@ class BuggyModel
     return $stmt;
   }
 
+
+  public static function getAllParts($id)
+  {
+    $query = 'SELECT * FROM ' . self::$table_name . '_part JOIN part using(part_id) JOIN buggy using(buggy_id) WHERE buggy_id="'. $id .'";';
+    $stmt = self::$connection->query($query);
+
+    return $stmt;
+  }
+
+
+
   public static function getOne($id)
   {
     $query = 'SELECT * FROM ' . self::$table_name .' WHERE ' .self::$table_name . "_id='$id'";

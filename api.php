@@ -36,6 +36,19 @@
     }
   });
 
+  Route::set($preString . 'buggies/getparts', function() {
+    if (isset($_GET['buggyId'])) {
+      $id = $_GET['buggyId'];
+      $result = Buggy::getParts($id)->fetchAll() ;
+
+      $response = json_encode($result[0]);
+      echo $response;
+
+    } else {
+        // Fallback behaviour goes here
+    }
+  });
+
   Route::set($preString . 'buggies/update', function() {
 
     $result = Buggy::updateBuggy();
@@ -209,7 +222,7 @@
   Route::set($preString . 'clients/getall', function() {
     $_SERVER["REQUEST_METHOD"];
 
-    $result = Client::getClient()->fetchAll() ;
+    $result = Client::getAll()->fetchAll() ;
 
     $response = json_encode($result);
     echo $response;
@@ -229,7 +242,7 @@
   });
 
   Route::set($preString . 'clients/update', function() {
-
+    
     $result = Client::updateClient();
     
     http_response_code($result['code']);
@@ -239,7 +252,7 @@
     echo json_encode($response);
   });
 
-  Route::set($preString . 'tours/delete', function() {
+  Route::set($preString . 'clients/delete', function() {
 
     $result = Client::deleteClient();
     
