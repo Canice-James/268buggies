@@ -186,4 +186,68 @@
     echo json_encode($response);
   });
   // END PART API
+
+
+    //-----------------------------------------------------------------------
+  //-----------------------------------------------------------------------
+  //-----------------------------------------------------------------------
+
+
+  // START CLIENT API
+
+  Route::set($preString . 'clients/add', function() {
+
+    $result = Client::addClient();
+
+    http_response_code($result['code']);
+    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+    $response['status_message'] = $result['message'];
+    $response['status_code'] = $result['code'];
+    echo json_encode($response);
+  });
+
+  Route::set($preString . 'clients/getall', function() {
+    $_SERVER["REQUEST_METHOD"];
+
+    $result = Client::getClient()->fetchAll() ;
+
+    $response = json_encode($result);
+    echo $response;
+  });
+
+  Route::set($preString . 'clients/getone', function() {
+    if (isset($_GET['id'])) {
+      $client_id = $_GET['id'];
+      $result = Client::getClient($client_id)->fetchAll() ;
+
+      $response = json_encode($result[0]);
+      echo $response;
+
+    } else {
+        // Fallback behaviour goes here
+    }
+  });
+
+  Route::set($preString . 'clients/update', function() {
+
+    $result = Client::updateClient();
+    
+    http_response_code($result['code']);
+    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+    $response['status_message'] = $result['message'];
+    $response['status_code'] = $result['code'];
+    echo json_encode($response);
+  });
+
+  Route::set($preString . 'tours/delete', function() {
+
+    $result = Client::deleteClient();
+    
+    http_response_code($result['code']);
+    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+    $response['status_message'] = $result['message'];
+    $response['status_code'] = $result['code'];
+    echo json_encode($response);
+  });
+  // END PART API
 ?>

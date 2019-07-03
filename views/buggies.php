@@ -29,7 +29,6 @@
                   <tr>
                     <td>' . $row['buggy_id'] . '</td>
                     <td>' . $row['colour'] . '</td>
-                    <!-- <td>' . $row['run_duration'] . '</td> -->
                     <td>' . $row['run_count'] . '</td>
                     <td>' . $row['run_left'] . '</td>
                     <td>         
