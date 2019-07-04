@@ -27,20 +27,20 @@
           <p>Parts</p>
         </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item tours-nav-item">
         <a class="nav-link" href="./tours">
           <i class="material-icons">map</i>
           <p>Tours</p>
         </a>
       </li>
-      <li class="nav-item ">
+      <li class="nav-item clients-nav-item">
         <a class="nav-link" href="./clients">
           <i class="material-icons">person</i>
           <p>Clients</p>
         </a>
       </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="./incident">
+      <li class="nav-item incidents-nav-item">
+        <a class="nav-link" href="./incidents">
           <i class="material-icons">library_books</i>
           <p>Incidents</p>
         </a>
