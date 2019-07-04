@@ -57,6 +57,67 @@ class Tour extends Controller {
     return TourModel::delete($id);
   }
 
+  public static function getOneGroup($member_id){
+    
+    return TourModel::getOne($member_id);
+  }
+
+  public static function addGroup(){
+
+    $data = ($_POST); 
+    // echo "body"; var_dump($_POST);
+    $member_id = $data['member_id'];
+    $mem_fname = $data['mem_fname'];
+    $mem_lname = $data['mem_lname'];
+    $mem_address = $data['mem_address'];
+    $mem_phone = $data['mem_phone'];
+    $mem_tour_date = $data['mem_tour_date'];
+    $client_id = $data['client_id'];
+    $tour_id = $data['tour_id'];
+
+    return TourModel::addGroup($member_id, $mem_fname, $mem_lname, $mem_address, $mem_phone, $mem_tour_date, $client_id, $tour_id);
+  }
+
+  public static function getAllGroups($member_id){
+    
+    return TourModel::getAllGroups($member_id);
+  }
+
+  public static function getGroup($member_id, $mem_fname, $mem_lname, $mem_address, $mem_phone, $mem_tour_date, $client_id, $tour_id){
+    
+    return TourModel::getGroup($member_id, $mem_fname, $mem_lname, $mem_address, $mem_phone, $mem_tour_date, $client_id, $tour_id);
+  }
+
+  public static function updateGroup(){
+
+    $data = ($_POST);  
+    // echo "body"; var_dump($_POST);
+    $member_id = $data['member_id'];
+    $mem_fname = $data['mem_fname'];
+    $mem_lname = $data['mem_lname'];
+    $mem_address = $data['mem_address'];
+    $mem_phone = $data['mem_phone'];
+    $mem_tour_date = $data['mem_tour_date'];
+    $client_id = $data['client_id'];
+    $tour_id = $data['tour_id'];
+
+    return TourModel::updateGroup($member_id, $mem_fname, $mem_lname, $mem_address, $mem_phone, $mem_tour_date, $client_id, $tour_id);
+  }
+
+  public static function deleteGroup(){
+    
+    $member_id = $data['member_id'];
+    $mem_fname = $data['mem_fname'];
+    $mem_lname = $data['mem_lname'];
+    $mem_address = $data['mem_address'];
+    $mem_phone = $data['mem_phone'];
+    $mem_tour_date = $data['mem_tour_date'];
+    $client_id = $data['client_id'];
+    $tour_id = $data['tour_id'];
+
+    return TourModel::deleteGroup($member_id, $mem_fname, $mem_lname, $mem_address, $mem_phone, $mem_tour_date, $client_id, $tour_id);
+  }
+
 }
 
 ?>

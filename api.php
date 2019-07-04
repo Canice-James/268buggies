@@ -253,6 +253,66 @@ Route::set($preString . 'tours/delete', function () {
   $response['status_code'] = $result['code'];
   echo json_encode($response);
 });
+
+Route::set($preString . 'tours/group/add', function () {
+
+  $result = Tour::addGroup();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'tours/group/getall', function () {
+  if (isset($_GET['member_id'])) {
+    $id = $_GET['member_id'];
+    $result = Tour::getGroup($member_id)->fetchAll();
+
+    $response = json_encode($result);
+    echo $response;
+  } else {
+    // Fallback behaviour goes here
+   echo "boom";
+  }
+});
+
+Route::set($preString . 'tours/group/getone', function () {
+
+  if (isset($_GET['tour_id']) && isset($_GET['member_id'])) {
+    $tour_id = $_GET['tourId'];
+    $member_id = $_GET['member_id'];
+    $result = Tour::getOne($tour_id, $member_id)->fetchAll();
+
+    $response = json_encode($result[0]);
+    echo $response;
+  } else {
+    // Fallback behaviour goes here
+  }
+});
+
+Route::set($preString . 'tours/group/update', function () {
+
+  $result = Tour::updateGroup();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'tours/group/delete', function () {
+
+  $result = Tour::deleteGroup();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
 // END PART API
 
 
