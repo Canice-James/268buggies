@@ -17,12 +17,23 @@
     Buggy::CreateView('buggies', null, 'default');
   });
 
-    //Set Route 
-    Route::set('tours', function() {
-      //Add variables into an array and pass that array of data into the page
-      Buggy::CreateView('tours', null, 'default');
-    });
+  //Set Route 
+  Route::set('tours', function() {
+    //Add variables into an array and pass that array of data into the page
+    Buggy::CreateView('tours', null, 'default');
+  });
 
+  //Set Route 
+  Route::set('clients', function() {
+    //Add variables into an array and pass that array of data into the page
+    Client::CreateView('clients', null, 'default');
+  });
+
+    //Set Route 
+    Route::set('incidents', function() {
+      //Add variables into an array and pass that array of data into the page
+      Client::CreateView('incidents', null, 'default');
+    });
 
   require_once("./api.php"); //Load view
 ?>

@@ -38,7 +38,7 @@ class TourModel
 
   public static function getAll()
   {
-    $query = 'SELECT * FROM ' . self::$table_name;
+    $query = 'SELECT * FROM ' . self::$table_name . ' JOIN client using(client_id)';
     $stmt = self::$connection->query($query);
 
     return $stmt;
@@ -52,8 +52,8 @@ class TourModel
     return $stmt;
   }
 
-  public static function update($group_tour, $route, $date, $time, $price, $no_partic, $equip_requested, $num_of_buggies){
-    $query = "UPDATE " . self::$table_name . " SET group_tour = '".$group_tour."',' route = '".$route."', 'date' = '".$date."', 'time' = '".$time."', price = '.$price.', no_partic = '".$no_partic."', equip_requested = '".$equip_requested."', num_of_buggies = '".$num_of_buggies."' WHERE tour_id = '".$tour_id."';";
+  public static function update($tour_id, $client_id, $group_tour, $route, $date, $time, $price, $no_partic, $equip_requested, $num_of_buggies){
+    $query = "UPDATE " . self::$table_name . " SET client_id= '" . $client_id . "', group_tour = '".$group_tour."', route = '".$route."', date = '".$date."', time = '".$time."', price = $price, no_partic = $no_partic, equip_requested = $equip_requested, num_of_buggies = '".$num_of_buggies."' WHERE tour_id = '".$tour_id."';";
     $stmt = self::$connection->prepare($query);
 
     $message = "";

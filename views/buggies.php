@@ -6,7 +6,7 @@
   <div class="col-lg-12 col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title d-inline">Buggies</h4>
+        <h2 class="card-title d-inline">Buggies</h2>
         <!-- <p class="card-category"></p> -->
         <button class="btn btn-secondary pull-right" data-toggle="modal" data-target="#create" type="submit">Create</button>
 
@@ -15,7 +15,7 @@
         <table class="table table-hover">
           <thead class="text-info">
             <th>ID</th>
-            <th>Client ID</th>
+            <th> Name</th>
             <!-- <th>Group Tour</th> -->
             <th>Route</th>
             <th>Date</th>

@@ -4,22 +4,12 @@
       <ul>
         <li>
           <a href="https://www.creative-tim.com">
-            Creative Tim
+            Credits
           </a>
         </li>
         <li>
           <a href="https://creative-tim.com/presentation">
-            About Us
-          </a>
-        </li>
-        <li>
-          <a href="http://blog.creative-tim.com">
-            Blog
-          </a>
-        </li>
-        <li>
-          <a href="https://www.creative-tim.com/license">
-            Licenses
+            Home
           </a>
         </li>
       </ul>
@@ -29,7 +19,7 @@
       <script>
         document.write(new Date().getFullYear())
       </script>, made with <i class="material-icons">favorite</i> by
-      <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+      <a href="https://www.creative-tim.com" target="_blank">ABIIT Capstone 2019</a>
     </div>
   </div>
 </footer>

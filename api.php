@@ -316,13 +316,18 @@ Route::set($preString . 'clients/delete', function () {
   $response['status_code'] = $result['code'];
   echo json_encode($response);
 });
-  // END PART API
+  // END CLIENT API
+
+  //-----------------------------------------------------------------------
+  //-----------------------------------------------------------------------
+  //-----------------------------------------------------------------------
+
 
   // START INCIDENTS API
 
 Route::set($preString . 'incidents/add', function () {
 
-  $result = Incidents::addIncidents();
+  $result = Incident::addIncidents();
 
   http_response_code($result['code']);
   $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
@@ -334,7 +339,7 @@ Route::set($preString . 'incidents/add', function () {
 Route::set($preString . 'incidents/getall', function () {
   $_SERVER["REQUEST_METHOD"];
 
-  $result = Incidents::getAll()->fetchAll();
+  $result = Incident::getAll()->fetchAll();
 
   $response = json_encode($result);
   echo $response;
@@ -343,7 +348,7 @@ Route::set($preString . 'incidents/getall', function () {
 Route::set($preString . 'incidents/getone', function () {
   if (isset($_GET['id'])) {
     $Incidents_id = $_GET['id'];
-    $result = Incidents::getIncidents($Incidents_id)->fetchAll();
+    $result = Incident::getIncidents($Incidents_id)->fetchAll();
 
     $response = json_encode($result[0]);
     echo $response;
@@ -354,7 +359,7 @@ Route::set($preString . 'incidents/getone', function () {
 
 Route::set($preString . 'incidents/update', function () {
 
-  $result = Incidents::updateIncidents();
+  $result = Incident::updateIncidents();
 
   http_response_code($result['code']);
   $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
@@ -365,7 +370,7 @@ Route::set($preString . 'incidents/update', function () {
 
 Route::set($preString . 'incidents/delete', function () {
 
-  $result = Incidents::deleteIncidents();
+  $result = Incident ::deleteIncidents();
 
   http_response_code($result['code']);
   $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];

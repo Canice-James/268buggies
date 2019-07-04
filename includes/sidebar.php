@@ -40,12 +40,12 @@
         </a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="./typography.html">
+        <a class="nav-link" href="./incident">
           <i class="material-icons">library_books</i>
-          <p>Typography</p>
+          <p>Incidents</p>
         </a>
       </li>
-      <li class="nav-item ">
+      <!-- <li class="nav-item ">
         <a class="nav-link" href="./icons.html">
           <i class="material-icons">bubble_chart</i>
           <p>Icons</p>
@@ -56,8 +56,8 @@
           <i class="material-icons">location_ons</i>
           <p>Maps</p>
         </a>
-      </li>
-      <li class="nav-item ">
+      </li> -->
+      <!-- <li class="nav-item ">
         <a class="nav-link" href="./notifications.html">
           <i class="material-icons">notifications</i>
           <p>Notifications</p>
@@ -74,7 +74,7 @@
           <i class="material-icons">unarchive</i>
           <p>Upgrade to PRO</p>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </div>

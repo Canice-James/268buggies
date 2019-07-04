@@ -6,9 +6,9 @@
   <div class="col-lg-12 col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title d-inline">Tours</h4>
+        <h2 class="card-title d-inline">Tours</h2>
         <!-- <p class="card-category"></p> -->
-        <button class="btn btn-secondary pull-right" data-toggle="modal" data-target="#create" type="submit">Create</button>
+        <button class="btn btn-secondary pull-right" onclick="loadWithClients('create')" data-toggle="modal" data-target="#create" type="submit">Create</button>
 
       </div>
       <div class="card-body table-responsive">
@@ -34,7 +34,7 @@
               echo '
                 <tr>
                   <td>' . $row['tour_id'] . '</td>
-                  <td>' . $row['client_id'] . '</td>
+                  <td>' . $row['client_fname'] . ' ' . $row['client_lname'] .'</td>
                   <td>' . $row['group_tour'] . '</td>
                   <td>' . $row['route'] . '</td>
                   <td>' . $row['date'] . '</td>
@@ -44,9 +44,9 @@
                   <td>' . $row['num_of_buggies'] . '</td>
                   <td>' . $row['equip_requested'] . '</td>
                   <td>         
-                    <button onclick="editRecord(\'' . $row['tour_id'] . '\')" class="btn btn-primary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
+                    <button onclick="editRecord(\'' . $row['tour_id'] . '\')" class="btn btn-sm btn-primary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
                   
-                    <button onclick="deleteRecord(\'' . $row['tour_id'] . '\')" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
+                    <button onclick="deleteRecord(\'' . $row['tour_id'] . '\')" class="btn btn-sm btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
                   </td>
                 </tr>
                 ';
@@ -74,7 +74,9 @@
         <input type="hidden" class="form-control" id="tourId" >
         <div class="form-group">
           <label for="clientId">Client </label>
-          <input type="text" class="form-control" id="clientId" >
+          <select class="form-control" id="clientId">
+            <option selected>Clients Failed to Load</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="route">Route</label>
@@ -86,7 +88,10 @@
         </div>
         <div class="form-group">
           <label for="isGroupTour">Is it a group?</label>
-          <input type="text" class="form-control" id="isGroupTour">
+          <select class="form-control" id="isGroupTour">
+            <option value="1" selected>Yes</option>
+            <option value="0">No</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="date">Date</label>
@@ -106,7 +111,10 @@
         </div>
         <div class="form-group">
           <label for="isEquipRequested">Does it require Equipment? </label>
-          <input type="text" class="form-control" id="isEquipRequested">
+          <select class="form-control" id="isEquipRequested">
+            <option value="1">Yes</option>
+            <option value="0" selected>No</option>
+          </select>
         </div>
 
       </div>
@@ -136,7 +144,9 @@
         <input type="hidden" class="form-control" id="tourId" >
         <div class="form-group">
           <label for="clientId">Client </label>
-          <input type="text" class="form-control" id="clientId" >
+          <select class="form-control" id="clientId">
+            <option selected>Clients Failed to Load</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="route">Route</label>
@@ -148,7 +158,10 @@
         </div>
         <div class="form-group">
           <label for="isGroupTour">Is it a group?</label>
-          <input type="text" class="form-control" id="isGroupTour">
+          <select class="form-control" id="isGroupTour">
+            <option value="1" selected>Yes</option>
+            <option value="0">No</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="date">Date</label>
@@ -168,7 +181,10 @@
         </div>
         <div class="form-group">
           <label for="isEquipRequested">Does it require Equipment? </label>
-          <input type="text" class="form-control" id="isEquipRequested">
+          <select class="form-control" id="isEquipRequested">
+            <option value="1">Yes</option>
+            <option value="0" selected>No</option>
+          </select>
         </div>
 
       </div>
@@ -251,7 +267,7 @@ $( document ).ready(function() {
       isGroupTour: $('#edit #isGroupTour').val(),
       date: $('#edit #date').val(),
       time: $('#edit #time').val(),
-      price: $('#create #price').val(),
+      price: $('#edit #price').val(),
       participantAmount: $('#edit #participantAmount').val(),
       buggyAmount: $('#edit #buggyAmount').val(),
       isEquipRequested: $('#edit #isEquipRequested').val()
@@ -295,6 +311,7 @@ $( document ).ready(function() {
 
 function editRecord(id){
   
+  loadWithClients('edit');
   $.get( "./api/tours/getone", {"id": id}, function( res ) {
     res = JSON.parse(res);
 
@@ -314,6 +331,19 @@ function editRecord(id){
 
 function deleteRecord(id){
   $('#delete #id').val(id)
+}
+
+function loadWithClients(modalId) {
+
+$.get("./api/clients/getall", function(res) {
+  res = JSON.parse(res);
+
+  var selection = $("#" + modalId + " #clientId");
+  selection.empty();
+  $.each(res, function(idx, elem) {
+    selection.append(`<option value="${elem.client_id}">${elem.client_fname} ${elem.client_lname}</option>`);
+  });
+});
 }
 
 </script>

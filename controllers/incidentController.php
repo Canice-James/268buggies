@@ -1,6 +1,6 @@
 <?php
 
-class Incidents extends Controller {
+class Incident extends Controller {
 
 
   public static function getAll(){

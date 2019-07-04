@@ -50,7 +50,7 @@ class Client extends Controller {
   public static function deleteCLient(){
     
     $data = ($_POST);
-    $client_id = $data['client_id'];
+    $client_id = $data['id'];
     return ClientModel::delete($client_id);
   }
 

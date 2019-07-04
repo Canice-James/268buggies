@@ -6,7 +6,7 @@
   <div class="col-lg-12 col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title d-inline">Parts</h4>
+        <h2 class="card-title d-inline">Parts</h2>
         <!-- <p class="card-category"></p> -->
         <button class="btn btn-secondary pull-right" data-toggle="modal" data-target="#create" type="submit">Create</button>
 
@@ -33,9 +33,9 @@
                   <td>' . $row['supplier_id'] . '</td>
                   <td>' . $row['quantity'] . '</td>
                   <td>         
-                    <button onclick="editRecord(\'' . $row['part_id'] . '\')" class="btn btn-primary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
+                    <button onclick="editRecord(\'' . $row['part_id'] . '\')" class="btn btn-sm btn-primary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
                   
-                    <button onclick="deleteRecord(\'' . $row['part_id'] . '\')" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
+                    <button onclick="deleteRecord(\'' . $row['part_id'] . '\')" class="btn btn-sm btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
                   </td>
                 </tr>
                 ';

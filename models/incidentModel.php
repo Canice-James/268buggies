@@ -33,9 +33,6 @@ class IncidentModel
       $code = 500;
     }
 
-
-    self::printErrors();
-
     $res = array("message"=> $message, "code"=>$code);
     // var_dump( $res);
     return $res;
@@ -44,7 +41,7 @@ class IncidentModel
   //R
   public static function getAll()
   {
-    $query = 'SELECT * FROM ' . self::$table_name;
+    $query = 'SELECT * FROM ' . self::$table_name .' JOIN Client using(client_id)';
     $stmt = self::$connection->query($query);
 
     return $stmt;
@@ -52,7 +49,7 @@ class IncidentModel
 
   public static function getOne($incid_id)
   {
-    $query = 'SELECT * FROM ' . self::$table_name . 'WHERE incid_id =' . $id;
+    $query = 'SELECT * FROM ' . self::$table_name .' JOIN Client using(client_id)' . 'WHERE incid_id =' . $id;
     $stmt = self::$connection->query($query);
 
     return $stmt;
