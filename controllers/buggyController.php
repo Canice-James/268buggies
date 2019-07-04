@@ -13,11 +13,6 @@ class Buggy extends Controller {
     return BuggyModel::getOne($id);
   }
 
-  public static function getParts($buggyId){
-    
-    return BuggyModel::getAllParts($buggyId);
-  }
-
   public static function addBuggy(){
 
     $data = ($_POST);
@@ -49,6 +44,46 @@ class Buggy extends Controller {
     return BuggyModel::delete($id);
   }
 
+  public static function addBuggyPart(){
+
+    $data = ($_POST);  //buggy_id, part_id, part_run_count
+    // echo "body"; var_dump($_POST);
+    $buggyId = $data['buggyId'];
+    $partId = $data['partId'];
+    $runCount = $data['runCount'];
+
+    return BuggyModel::addBuggyPart($buggyId, $partId, $runCount);
+  }
+
+  public static function getParts($buggyId){
+    
+    return BuggyModel::getAllParts($buggyId);
+  }
+
+  public static function getPart($buggyId, $partId){
+    
+    return BuggyModel::getOnePart($buggyId, $partId);
+  }
+
+  public static function updateBuggyPart(){
+
+    $data = ($_POST);  //buggy_id, part_id, part_run_count
+    // echo "body"; var_dump($_POST);
+    $buggyId = $data['buggyId'];
+    $partId = $data['partId'];
+    $runCount = $data['runCount'];
+
+    return BuggyModel::updateBuggyPart($buggyId, $partId, $runCount);
+  }
+
+  public static function deleteBuggyPart(){
+    
+    $data = ($_POST);
+    $buggyId = $data['buggyId'];
+    $partId = $data['partId'];
+    return BuggyModel::deleteBuggyPart($buggyId, $partId);
+  }
+  
 }
 
 ?>

@@ -1,76 +1,63 @@
-<?php 
-  $preString = "api.php/";
+<?php
+$preString = "api.php/";
 
-  // START BUGGY API
+// START BUGGY API
 
-  Route::set($preString . 'buggies/add', function() {
+Route::set($preString . 'buggies/add', function () {
 
-    $result = Buggy::addBuggy();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
+  $result = Buggy::addBuggy();
 
-  Route::set($preString . 'buggies/getall', function() {
-    $_SERVER["REQUEST_METHOD"];
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
 
-    $result = Buggy::getBuggies()->fetchAll() ;
+Route::set($preString . 'buggies/getall', function () {
+  $_SERVER["REQUEST_METHOD"];
 
-    $response = json_encode($result);
+  $result = Buggy::getBuggies()->fetchAll();
+
+  $response = json_encode($result);
+  echo $response;
+});
+
+Route::set($preString . 'buggies/getone', function () {
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $result = Buggy::getBuggy($id)->fetchAll();
+
+    $response = json_encode($result[0]);
     echo $response;
-  });
+  } else {
+    // Fallback behaviour goes here
+  }
+});
 
-  Route::set($preString . 'buggies/getone', function() {
-    if (isset($_GET['id'])) {
-      $id = $_GET['id'];
-      $result = Buggy::getBuggy($id)->fetchAll() ;
 
-      $response = json_encode($result[0]);
-      echo $response;
+Route::set($preString . 'buggies/update', function () {
 
-    } else {
-        // Fallback behaviour goes here
-    }
-  });
+  $result = Buggy::updateBuggy();
 
-  Route::set($preString . 'buggies/getparts', function() {
-    if (isset($_GET['buggyId'])) {
-      $id = $_GET['buggyId'];
-      $result = Buggy::getParts($id)->fetchAll() ;
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
 
-      $response = json_encode($result[0]);
-      echo $response;
+Route::set($preString . 'buggies/delete', function () {
 
-    } else {
-        // Fallback behaviour goes here
-    }
-  });
+  $result = Buggy::deleteBuggy();
 
-  Route::set($preString . 'buggies/update', function() {
-
-    $result = Buggy::updateBuggy();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-
-  Route::set($preString . 'buggies/delete', function() {
-
-    $result = Buggy::deleteBuggy();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-  // END BUGGY API
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+// END BUGGY API
 
 
 //-----------------------------------------------------------------------
@@ -78,189 +65,255 @@
 //-----------------------------------------------------------------------
 
 
-  // START PART API
+// START PART API
 
-  Route::set($preString . 'parts/add', function() {
+Route::set($preString . 'parts/add', function () {
 
-    $result = Part::addPart();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
+  $result = Part::addPart();
 
-  Route::set($preString . 'parts/getall', function() {
-    $_SERVER["REQUEST_METHOD"];
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
 
-    $result = Part::getParts()->fetchAll() ;
+Route::set($preString . 'parts/getall', function () {
+  $_SERVER["REQUEST_METHOD"];
+
+  $result = Part::getParts()->fetchAll();
+
+  $response = json_encode($result);
+  echo $response;
+});
+
+Route::set($preString . 'parts/getone', function () {
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $result = Part::getPart($id)->fetchAll();
+
+    $response = json_encode($result[0]);
+    echo $response;
+  } else {
+    // Fallback behaviour goes here
+  }
+});
+
+Route::set($preString . 'parts/update', function () {
+
+  $result = Part::updatePart();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'parts/delete', function () {
+
+  $result = Part::deletePart();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+// END PART API
+
+
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+
+
+
+// START BUGGY PART API
+
+Route::set($preString . 'buggies/parts/add', function () {
+
+  $result = Buggy::addBuggyPart();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'buggies/parts/getall', function () {
+  if (isset($_GET['buggyId'])) {
+    $id = $_GET['buggyId'];
+    $result = Buggy::getParts($id)->fetchAll();
 
     $response = json_encode($result);
     echo $response;
-  });
+  } else {
+    // Fallback behaviour goes here
+  }
+});
 
-  Route::set($preString . 'parts/getone', function() {
-    if (isset($_GET['id'])) {
-      $id = $_GET['id'];
-      $result = Part::getPart($id)->fetchAll() ;
+Route::set($preString . 'buggies/parts/getone', function () {
 
-      $response = json_encode($result[0]);
-      echo $response;
+  if (isset($_GET['partId']) && isset($_GET['buggyId'])) {
+    $buggyId = $_GET['buggyId'];
+    $partId = $_GET['partId'];
+    $result = Buggy::getPart($buggyId, $partId)->fetchAll();
 
-    } else {
-        // Fallback behaviour goes here
-    }
-  });
-
-  Route::set($preString . 'parts/update', function() {
-
-    $result = Part::updatePart();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-
-  Route::set($preString . 'parts/delete', function() {
-
-    $result = Part::deletePart();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-  // END PART API
-
-
-  //-----------------------------------------------------------------------
-  //-----------------------------------------------------------------------
-  //-----------------------------------------------------------------------
-
-
-  // START TOUR API
-
-  Route::set($preString . 'tours/add', function() {
-
-    $result = Tour::addTour();
-
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-
-  Route::set($preString . 'tours/getall', function() {
-    $_SERVER["REQUEST_METHOD"];
-
-    $result = Tour::getTours()->fetchAll() ;
-
-    $response = json_encode($result);
+    $response = json_encode($result[0]);
     echo $response;
-  });
-
-  Route::set($preString . 'tours/getone', function() {
-    if (isset($_GET['id'])) {
-      $id = $_GET['id'];
-      $result = Tour::getTour($id)->fetchAll() ;
-
-      $response = json_encode($result[0]);
-      echo $response;
-
-    } else {
-        // Fallback behaviour goes here
-    }
-  });
-
-  Route::set($preString . 'tours/update', function() {
-
-    $result = Tour::updateTour();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-
-  Route::set($preString . 'tours/delete', function() {
-
-    $result = Tour::deleteTour();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
-  // END PART API
+  } else {
+    // Fallback behaviour goes here
+  }
+});
 
 
-    //-----------------------------------------------------------------------
-  //-----------------------------------------------------------------------
-  //-----------------------------------------------------------------------
+Route::set($preString . 'buggies/parts/update', function () {
+
+  $result = Buggy::updateBuggyPart();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'buggies/parts/delete', function () {
+
+  $result = Buggy::deleteBuggyPart();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+// END BUGGY PART API
 
 
-  // START CLIENT API
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
-  Route::set($preString . 'clients/add', function() {
 
-    $result = Client::addClient();
+// START TOUR API
 
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
+Route::set($preString . 'tours/add', function () {
 
-  Route::set($preString . 'clients/getall', function() {
-    $_SERVER["REQUEST_METHOD"];
+  $result = Tour::addTour();
 
-    $result = Client::getAll()->fetchAll() ;
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
 
-    $response = json_encode($result);
+Route::set($preString . 'tours/getall', function () {
+  $_SERVER["REQUEST_METHOD"];
+
+  $result = Tour::getTours()->fetchAll();
+
+  $response = json_encode($result);
+  echo $response;
+});
+
+Route::set($preString . 'tours/getone', function () {
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $result = Tour::getTour($id)->fetchAll();
+
+    $response = json_encode($result[0]);
     echo $response;
-  });
+  } else {
+    // Fallback behaviour goes here
+  }
+});
 
-  Route::set($preString . 'clients/getone', function() {
-    if (isset($_GET['id'])) {
-      $client_id = $_GET['id'];
-      $result = Client::getClient($client_id)->fetchAll() ;
+Route::set($preString . 'tours/update', function () {
 
-      $response = json_encode($result[0]);
-      echo $response;
+  $result = Tour::updateTour();
 
-    } else {
-        // Fallback behaviour goes here
-    }
-  });
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
 
-  Route::set($preString . 'clients/update', function() {
-    
-    $result = Client::updateClient();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
+Route::set($preString . 'tours/delete', function () {
 
-  Route::set($preString . 'clients/delete', function() {
+  $result = Tour::deleteTour();
 
-    $result = Client::deleteClient();
-    
-    http_response_code($result['code']);
-    $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
-    $response['status_message'] = $result['message'];
-    $response['status_code'] = $result['code'];
-    echo json_encode($response);
-  });
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+// END PART API
+
+
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
+
+
+// START CLIENT API
+
+Route::set($preString . 'clients/add', function () {
+
+  $result = Client::addClient();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'clients/getall', function () {
+  $_SERVER["REQUEST_METHOD"];
+
+  $result = Client::getAll()->fetchAll();
+
+  $response = json_encode($result);
+  echo $response;
+});
+
+Route::set($preString . 'clients/getone', function () {
+  if (isset($_GET['id'])) {
+    $client_id = $_GET['id'];
+    $result = Client::getClient($client_id)->fetchAll();
+
+    $response = json_encode($result[0]);
+    echo $response;
+  } else {
+    // Fallback behaviour goes here
+  }
+});
+
+Route::set($preString . 'clients/update', function () {
+
+  $result = Client::updateClient();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
+
+Route::set($preString . 'clients/delete', function () {
+
+  $result = Client::deleteClient();
+
+  http_response_code($result['code']);
+  $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
+  $response['status_message'] = $result['message'];
+  $response['status_code'] = $result['code'];
+  echo json_encode($response);
+});
   // END PART API
-?>
