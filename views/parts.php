@@ -16,7 +16,7 @@
           <thead class="text-info">
             <th>ID</th>
             <th>Name</th>
-            <th>Runs Left</th>
+            <th>Run Limit</th>
             <th>Supplier</th>
             <th>Quantity</th>
             <th></th>
@@ -66,7 +66,7 @@
           <input type="text" class="form-control" id="name" >
         </div>
         <div class="form-group">
-          <label for="runLeft">Runs Left</label>
+          <label for="runLeft">Runs Limit</label>
           <input type="text" class="form-control" id="runLeft">
         </div>
         <div class="form-group">
@@ -112,7 +112,7 @@
           <input type="text" class="form-control" id="name" >
         </div>
         <div class="form-group">
-          <label for="runLeft">Runs Left</label>
+          <label for="runLeft">Run Limit</label>
           <input type="text" class="form-control" id="runLeft">
         </div>
         <div class="form-group">

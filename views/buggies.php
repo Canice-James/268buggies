@@ -287,7 +287,8 @@
       </div>
       <div class="modal-body">
         <p></p>
-        <input type="hidden" class="form-control" id="id">
+        <input type="hidden" class="form-control" id="buggyId">
+        <input type="hidden" class="form-control" id="partId">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
@@ -379,6 +380,26 @@
         }
       });
     });
+
+    $("#unassignPart #save").click(function() {
+
+      let deletedRecord = {
+        buggyId: $('#unassignPart #buggyId').val(),
+        partId: $('#unassignPart #partId').val(),
+      }
+      // alert(JSON.stringify(deletedRecord))
+      $.post("./api/buggies/parts/delete", deletedRecord, function(res) {
+        res = JSON.parse(res);
+
+        if (res.status_code == 200) {
+          $('#delete').modal('hide')
+          location.reload();
+        } else {
+          alert(res.status_message)
+        }
+      });
+    });
+
   });
 
   function editRecord(id) {
@@ -415,13 +436,13 @@
         table.append(` <tr><td> ${elem.part_id} </td>
           <td>  ${elem.part_name} </td>
           <td> ${elem.part_run_count} </td>
-          <td> ${elem.run_left} </td>
+          <td> ${Number(elem.run_rate) - Number(elem.part_run_count)} </td>
           <td>
             <!--<button onclick="viewParts(' ${elem.buggy_id} ')" class="btn btn-parts btn-sm  edit-btn" data-toggle="modal" data-target="#parts" type="submit">Parts</button>-->
 
             <!--<button onclick="editRecord(' ${elem.buggy_id} ')" class="btn btn-secoundary btn-sm edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>-->
           
-            <button onclick="deleteRecord(' ${elem.buggy_id} ')" class="btn btn-danger  btn-sm delete-btn" data-toggle="modal" data-target="#delete" type="submit">Unassign</button>
+            <button onclick="unassignPart('${elem.buggy_id}', '${elem.part_id}')" class="btn btn-danger  btn-sm delete-btn" data-toggle="modal" data-target="#unassignPart" type="submit">Unassign</button>
           </td>
         </tr>
          `);
@@ -447,9 +468,9 @@
     });
   }
 
-  function unassignPart(id) {
-    $('#unassignPart #id').val(id)
-    oadWithParts("unassignPart");
+  function unassignPart(buggyId, partId) {
+    $('#unassignPart #buggyId').val(buggyId);
+    $('#unassignPart #partId').val(partId);
   }
 
   function loadWithParts(modalId) {

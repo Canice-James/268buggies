@@ -168,14 +168,15 @@ class BuggyModel
     }
 
     //D
-    public static function deleteBuggyPart($buggyId)
+    public static function deleteBuggyPart($buggyId, $partId)
     {
-      $query = "DELETE FROM " . self::$table_name . "_part WHERE buggy_id='" . $buggyId . "';";
+      $query = "DELETE FROM " . self::$table_name . "_part WHERE buggy_id='" . $buggyId . "' AND part_id='" . $partId . "';";
       $stmt = self::$connection->prepare($query);
   
       $message = "";
       $code = "";
-  
+      
+      // var_dump($stmt);
       if ($stmt->execute() === TRUE) {
         $message = "Data Updated Successfully";
         $code = 200;
