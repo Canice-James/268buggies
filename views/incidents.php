@@ -8,7 +8,7 @@
       <div class="card-header card-header-primary">
         <h2 class="card-title d-inline">Incidents</h2>
         <!-- <p class="card-category"></p> -->
-        <button class="btn btn-secondary pull-right" data-toggle="modal" data-target="#create" type="submit">Create</button>
+        <button class="btn btn-secondary pull-right" onclick="loadWithClients('create')" data-toggle="modal" data-target="#create" type="submit">Create</button>
 
       </div>
       <div class="card-body table-responsive">
@@ -39,9 +39,9 @@
                   <td>' . $row['incident_emerg_contact'] . '</td>
                   <td>' . $row['incident_emerg_contact_num'] . '</td>   
                   <td>         
-                    <button onclick="editRecord(\'' . $row['incident_id'] . '\')" class="btn btn-sm btn-primary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
+                    <button onclick="editRecord(\'' . $row['incid_id'] . '\')" class="btn btn-sm btn-primary  edit-btn" data-toggle="modal" data-target="#edit" type="submit">Edit</button>
                   
-                    <button onclick="deleteRecord(\'' . $row['incident_id'] . '\')" class="btn btn-sm btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
+                    <button onclick="deleteRecord(\'' . $row['incid_id'] . '\')" class="btn btn-sm btn-danger delete-btn" data-toggle="modal" data-target="#delete" type="submit">Delete</button>
                   </td>
                 </tr>
                 ';
@@ -70,27 +70,29 @@
         <input type="hidden" class="form-control" id="id">
         <div class="form-group">
           <label for="name">Client</label>
-          <input type="text" class="form-control" id="firstName">
+          <select class="form-control" id="clientId">
+            <option selected>Clients Failed to Load</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="name">Description</label>
-          <input type="text" class="form-control" id="lastName">
+          <input type="text" class="form-control" id=description>
         </div>
         <div class="form-group">
           <label for="runLeft"> Cause </label>
-          <input type="text" class="form-control" id="address">
+          <input type="text" class="form-control" id="cause">
         </div>
         <div class="form-group">
           <label for="dob">Recommendation</label>
-          <input type="text" class="form-control" id="dob">
+          <input type="text" class="form-control" id="recom">
         </div>
         <div class="form-group">
           <label for="phone">Date</label>
-          <input type="text" class="form-control" id="phone">
+          <input type="text" class="form-control" id="date">
         </div>
         <div class="form-group">
           <label for="type">Time</label>
-          <input type="text" class="form-control" id="type">
+          <input type="text" class="form-control" id="time">
         </div>
 
       </div>
@@ -120,27 +122,29 @@
         <input type="hidden" class="form-control" id="id">
         <div class="form-group">
           <label for="name">Client</label>
-          <input type="text" class="form-control" id="firstName">
+          <select class="form-control" id="clientId">
+            <option selected>Clients Failed to Load</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="name">Description</label>
-          <input type="text" class="form-control" id="lastName">
+          <input type="text" class="form-control" id=description>
         </div>
         <div class="form-group">
           <label for="runLeft"> Cause </label>
-          <input type="text" class="form-control" id="address">
+          <input type="text" class="form-control" id="cause">
         </div>
         <div class="form-group">
           <label for="dob">Recommendation</label>
-          <input type="text" class="form-control" id="dob">
+          <input type="text" class="form-control" id="recom">
         </div>
         <div class="form-group">
           <label for="phone">Date</label>
-          <input type="text" class="form-control" id="phone">
+          <input type="text" class="form-control" id="date">
         </div>
         <div class="form-group">
           <label for="type">Time</label>
-          <input type="text" class="form-control" id="type">
+          <input type="text" class="form-control" id="time">
         </div>
 
       </div>
@@ -187,14 +191,12 @@
     $("#create #save").click(function() {
 
       let newRecord = {
-        firstName: $('#create #firstName').val(),
-        lastName: $('#create #lastName').val(),
-        address: $('#create #address').val(),
-        phone: $('#create #phone').val(),
-        type: $('#create #type').val(),
-        dob: $('#create #dob').val(),
-        emergencyContact: $('#create #emergencyContact').val(),
-        emergencyContactNumber: $('#create #emergencyContactNumber').val()
+        clientId: $('#create #clientId').val(),
+        description: $('#create #description').val(),
+        cause: $('#create #cause').val(),
+        recom: $('#create #recom').val(),
+        date: $('#create #date').val(),
+        time: $('#create #time').val(),
       }
 
       //alert(JSON.stringify(incident))
@@ -213,14 +215,12 @@
 
       let updatedRecord = {
         id: $('#edit #id').val(),
-        firstName: $('#edit #firstName').val(),
-        lastName: $('#edit #lastName').val(),
-        address: $('#edit #address').val(),
-        phone: $('#edit #phone').val(),
-        type: $('#edit #type').val(),
-        dob: $('#edit #dob').val(),
-        emergencyContact: $('#edit #emergencyContact').val(),
-        emergencyContactNumber: $('#edit #emergencyContactNumber').val()
+        clientId: $('#create #clientId').val(),
+        description: $('#create #description').val(),
+        cause: $('#create #cause').val(),
+        recom: $('#create #recom').val(),
+        date: $('#create #date').val(),
+        time: $('#create #time').val(),
       }
 
       // alert(JSON.stringify(updatedRecord))
@@ -252,31 +252,39 @@
         }
       });
     });
-
-
-
   });
 
   function editRecord(id) {
 
+    loadWithClients('edit');
     $.get("./api/incidents/getone", {
       "id": id
     }, function(res) {
       res = JSON.parse(res);
-
-      $('#edit #id').val(id)
-      $('#edit #firstName').val(res.incident_fname)
-      $('#edit #lastName').val(res.incident_lname)
-      $('#edit #address').val(res.incident_addr)
-      $('#edit #dob').val(res.incident_dob)
-      $('#edit #phone').val(res.incident_phone)
-      $('#edit #type').val(res.type)
-      $('#edit #emergencyContact').val(res.incident_emerg_contact)
-      $('#edit #emergencyContactNumber').val(res.incident_emerg_contact_num)
+      $('#edit #id').val(id);
+      $('#edit #clientId').val(res.client_id);
+      $('#edit #description').val(res.incid_desc);
+      $('#edit #cause').val(res.cause_of_incid);
+      $('#edit #recom').val(res.recom);
+      $('#edit #date').val(res.date);
+      $('#edit #time').val(res.time);
     });
   }
 
   function deleteRecord(id) {
     $('#delete #id').val(id)
+  }
+
+  function loadWithClients(modalId) {
+
+    $.get("./api/clients/getall", function(res) {
+      res = JSON.parse(res);
+
+      var selection = $("#" + modalId + " #clientId");
+      selection.empty();
+      $.each(res, function(idx, elem) {
+        selection.append(`<option value="${elem.client_id}">${elem.client_fname} ${elem.client_lname}</option>`);
+      });
+    });
   }
 </script>

@@ -387,7 +387,7 @@ Route::set($preString . 'clients/delete', function () {
 
 Route::set($preString . 'incidents/add', function () {
 
-  $result = Incident::addIncidents();
+  $result = Incident::addIncident();
 
   http_response_code($result['code']);
   $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
@@ -408,7 +408,7 @@ Route::set($preString . 'incidents/getall', function () {
 Route::set($preString . 'incidents/getone', function () {
   if (isset($_GET['id'])) {
     $Incidents_id = $_GET['id'];
-    $result = Incident::getIncidents($Incidents_id)->fetchAll();
+    $result = Incident::getIncident($Incidents_id)->fetchAll();
 
     $response = json_encode($result[0]);
     echo $response;
@@ -419,7 +419,7 @@ Route::set($preString . 'incidents/getone', function () {
 
 Route::set($preString . 'incidents/update', function () {
 
-  $result = Incident::updateIncidents();
+  $result = Incident::updateIncident();
 
   http_response_code($result['code']);
   $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];
@@ -430,7 +430,7 @@ Route::set($preString . 'incidents/update', function () {
 
 Route::set($preString . 'incidents/delete', function () {
 
-  $result = Incident ::deleteIncidents();
+  $result = Incident ::deleteIncident();
 
   http_response_code($result['code']);
   $response['status_code_header'] = 'HTTP/1.1 ' . $result['code'];

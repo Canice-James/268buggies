@@ -18,9 +18,9 @@ class Incident extends Controller {
     $data = ($_POST);
     // echo "body"; var_dump($_POST);
     $incid_id = Helper::uuid();
-    $client_id = $data['client_id'];
-    $incid_desc = $data['incid_desc'];
-    $cause_of_incid = $data['cause_of_incid'];
+    $client_id = $data['clientId'];
+    $incid_desc = $data['description'];
+    $cause_of_incid = $data['cause'];
     $recom = $data['recom'];
     $date = $data['date'];
     $time = $data['time'];
@@ -46,7 +46,7 @@ class Incident extends Controller {
   public static function deleteIncident(){
     
     $data = ($_POST);
-    $incid_id = $data['incid_id'];
+    $incid_id = $data['id'];
     return IncidentModel::delete($incid_id);
   }
 

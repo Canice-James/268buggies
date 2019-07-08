@@ -49,7 +49,7 @@ class IncidentModel
 
   public static function getOne($incid_id)
   {
-    $query = 'SELECT * FROM ' . self::$table_name .' JOIN Client using(client_id)' . 'WHERE incid_id =' . $id;
+    $query = 'SELECT * FROM ' . self::$table_name .' JOIN Client using(client_id)' . 'WHERE incid_id ="' . $incid_id . '";';
     $stmt = self::$connection->query($query);
 
     return $stmt;

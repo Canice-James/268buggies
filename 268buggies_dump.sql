@@ -62,7 +62,7 @@ CREATE TABLE `buggy` (
 
 LOCK TABLES `buggy` WRITE;
 /*!40000 ALTER TABLE `buggy` DISABLE KEYS */;
-INSERT INTO `buggy` VALUES ('10','Striped',24333434,43434),('11','Zed',19,19),('12','Zed',19,19),('13','Zed',19,19),('14','Riv',9,9),('15','Gold',1,1),('5','Hot Red',1,1),('501','Red',1,3),('502','Blue',2,2),('503','Green',1,3),('504','Yellow',3,1),('505','White',3,1),('6','Zebra',10,2),('7','Zebra',10,2),('8','Zebra',10,2),('9','Zebra',10,2),('f0jIkXiO','64',66,66),('HAgvBzSf','y',24333434,43434),('hiTcrFsg','44',4455,66),('HLXXZpqh','y',24333434,43434),('KUM8rxAl','y',24333434,43434),('su2n9qro','44',44,44),('Y1xhHl7k','y',24333434,43434);
+INSERT INTO `buggy` VALUES ('10','Stripedd',24333434,43434),('11','Zed',19,19),('12','Zed',19,19),('13','Zed',19,19),('14','Riv',9,9),('15','Gold',1,1),('5','Hot Red',1,1),('501','Red',1,3),('502','Blue',2,2),('503','Green',1,3),('504','Yellow',3,1),('505','White',3,1),('6','Zebra',10,2),('7','Zebra',10,2),('8','Zebra',10,2),('9','Zebra',10,2),('f0jIkXiO','64',66,66),('HAgvBzSf','y',24333434,43434),('hiTcrFsg','44',4455,66),('HLXXZpqh','y',24333434,43434),('KUM8rxAl','y',24333434,43434),('su2n9qro','44',44,44),('Y1xhHl7k','y',24333434,43434);
 /*!40000 ALTER TABLE `buggy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +80,9 @@ CREATE TABLE `buggy_part` (
   KEY `Buggy_ID` (`buggy_id`),
   KEY `Part_ID` (`part_id`),
   CONSTRAINT `Part_id` FOREIGN KEY (`part_id`) REFERENCES `part` (`part_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `buggy_id` FOREIGN KEY (`buggy_id`) REFERENCES `buggy` (`buggy_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `buggy_id` FOREIGN KEY (`buggy_id`) REFERENCES `buggy` (`buggy_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `buggy_part_ibfk_1` FOREIGN KEY (`buggy_id`) REFERENCES `buggy` (`buggy_id`),
+  CONSTRAINT `buggy_part_ibfk_2` FOREIGN KEY (`part_id`) REFERENCES `part` (`part_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -90,7 +92,7 @@ CREATE TABLE `buggy_part` (
 
 LOCK TABLES `buggy_part` WRITE;
 /*!40000 ALTER TABLE `buggy_part` DISABLE KEYS */;
-INSERT INTO `buggy_part` VALUES ('501','980',4),('501','981',4),('501','982',4),('501','983',4),('501','984',4),('501','985',4),('501','986',4),('502','980',5),('502','981',5),('502','982',5),('502','983',5),('502','984',5),('502','985',5),('502','986',5),('503','980',0),('503','981',0),('503','982',0),('503','983',0),('503','984',0),('503','985',0),('503','986',0),('504','980',4),('504','981',4),('504','982',4),('504','983',4),('504','984',4),('504','985',4),('504','986',4),('505','980',2),('505','981',2),('505','982',2),('505','983',2),('505','984',2),('505','985',2),('505','986',2),('13','980',4),('13','981',4),('13','982',4),('13','983',5),('13','984',5),('13','985',4),('13','986',3),('14','980',4),('14','981',4),('14','982',4),('14','983',5),('14','984',5),('14','985',4),('14','986',3),('10','982',1);
+INSERT INTO `buggy_part` VALUES ('501','980',4),('501','981',4),('501','982',4),('501','983',4),('501','984',4),('501','985',4),('501','986',4),('502','980',5),('502','981',5),('502','982',5),('502','983',5),('502','984',5),('502','985',5),('502','986',5),('503','980',0),('503','981',0),('503','982',0),('503','983',0),('503','984',0),('503','985',0),('503','986',0),('504','980',4),('504','981',4),('504','982',4),('504','983',4),('504','984',4),('504','985',4),('504','986',4),('505','980',2),('505','981',2),('505','982',2),('505','983',2),('505','984',2),('505','985',2),('505','986',2),('13','980',4),('13','981',4),('13','982',4),('13','983',5),('13','984',5),('13','985',4),('13','986',3),('14','980',4),('14','981',4),('14','982',4),('14','983',5),('14','984',5),('14','985',4),('14','986',3),('10','980',0),('10','985',3),('10','986',0);
 /*!40000 ALTER TABLE `buggy_part` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +190,10 @@ CREATE TABLE `client_incident` (
   `incid_id` varchar(8) NOT NULL,
   KEY `client_id` (`client_id`) USING BTREE,
   KEY `incid_id` (`incid_id`) USING BTREE,
-  KEY `tour_id` (`tour_id`) USING BTREE
+  KEY `tour_id` (`tour_id`) USING BTREE,
+  CONSTRAINT `client_incident_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
+  CONSTRAINT `client_incident_ibfk_2` FOREIGN KEY (`incid_id`) REFERENCES `incident` (`incid_id`),
+  CONSTRAINT `client_incident_ibfk_3` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -298,7 +303,8 @@ CREATE TABLE `equipment` (
   `equip_type` varchar(100) NOT NULL,
   `quantity` int(11) NOT NULL,
   PRIMARY KEY (`equip_id`),
-  KEY `Client_ID` (`client_id`)
+  KEY `Client_ID` (`client_id`),
+  CONSTRAINT `equipment_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -320,18 +326,21 @@ DROP TABLE IF EXISTS `group_member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `group_member` (
-  `member_id` int(6) NOT NULL AUTO_INCREMENT,
+  `member_id` varchar(8) NOT NULL,
   `mem_fname` varchar(30) NOT NULL,
   `mem_lname` varchar(30) NOT NULL,
   `mem_address` varchar(50) NOT NULL,
   `mem_phone` varchar(14) NOT NULL,
   `mem_tour_date` date NOT NULL,
-  `client_id` int(6) NOT NULL,
-  `tour_id` int(6) DEFAULT NULL,
+  `client_id` varchar(8) NOT NULL,
+  `tour_id` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`member_id`),
-  KEY `Client_ID` (`client_id`),
-  KEY `TID_FK` (`tour_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=465 DEFAULT CHARSET=latin1;
+  KEY `TID_FK` (`tour_id`),
+  KEY `group_member_ibfk_1` (`client_id`),
+  CONSTRAINT `group_member_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`),
+  CONSTRAINT `group_member_ibfk_2` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`tour_id`),
+  CONSTRAINT `vdfvd` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`) ON DELETE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -340,7 +349,7 @@ CREATE TABLE `group_member` (
 
 LOCK TABLES `group_member` WRITE;
 /*!40000 ALTER TABLE `group_member` DISABLE KEYS */;
-INSERT INTO `group_member` VALUES (456,'Clare','Banks','Texas','(268) 776-9890','2019-01-03',101,11),(457,'Joseph','Williams','Texas','(268) 772-3377','2019-01-03',101,11),(458,'Trevor','Banks','Texas','(268) 771-1010','2019-01-03',101,11),(459,'Frank','Browne','Florida','(268) 722-0900','2019-03-01',102,12),(460,'Chris','James','Florida','(268) 779-8009','2019-03-01',102,12),(461,'Sarah','Blake','Florida','(268) 776-4444','2019-03-01',102,12),(462,'Lindsay','Jones','New York','(268) 720-1234','2019-01-19',104,14),(463,'Mica','Lynn','New York','(268) 720-5678','2019-01-19',104,14),(464,'Jack','Rodgers','Florida','(268) 770-7771','2019-01-19',104,14);
+INSERT INTO `group_member` VALUES ('456','Clare','Banks','Texas','(268) 776-9890','2019-01-03','101','11'),('457','Joseph','Williams','Texas','(268) 772-3377','2019-01-03','101','11'),('458','Trevor','Banks','Texas','(268) 771-1010','2019-01-03','101','11'),('459','Frank','Browne','Florida','(268) 722-0900','2019-03-01','102','12'),('460','Chris','James','Florida','(268) 779-8009','2019-03-01','102','12'),('461','Sarah','Blake','Florida','(268) 776-4444','2019-03-01','102','12'),('462','Lindsay','Jones','New York','(268) 720-1234','2019-01-19','104','14'),('463','Mica','Lynn','New York','(268) 720-5678','2019-01-19','104','14'),('464','Jack','Rodgers','Florida','(268) 770-7771','2019-01-19','104','14');
 /*!40000 ALTER TABLE `group_member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,7 +369,8 @@ CREATE TABLE `incident` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   PRIMARY KEY (`incid_id`),
-  KEY `Client_ID` (`client_id`)
+  KEY `Client_ID` (`client_id`),
+  CONSTRAINT `incident_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -417,7 +427,8 @@ DROP TABLE IF EXISTS `inventory`;
 CREATE TABLE `inventory` (
   `part_id` varchar(8) NOT NULL,
   `quantity` int(11) NOT NULL,
-  KEY `Part_ID` (`part_id`)
+  KEY `Part_ID` (`part_id`),
+  CONSTRAINT `inventory_ibfk_1` FOREIGN KEY (`part_id`) REFERENCES `part` (`part_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -529,6 +540,8 @@ CREATE TABLE `supplier_part` (
   KEY `Supplier_ID` (`supplier_id`),
   KEY `Part_ID` (`part_id`),
   CONSTRAINT `supplier_id` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `supplier_part_ibfk_1` FOREIGN KEY (`part_id`) REFERENCES `part` (`part_id`),
+  CONSTRAINT `supplier_part_ibfk_2` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`supplier_id`),
   CONSTRAINT `supplier_part_id` FOREIGN KEY (`part_id`) REFERENCES `part` (`part_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -601,7 +614,7 @@ CREATE TABLE `tours` (
 
 LOCK TABLES `tours` WRITE;
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
-INSERT INTO `tours` VALUES ('11','101','Y','South','2019-01-03','17:19:16',200.00,7,1,6),('12','102','Y','South','2019-03-01','11:10:59',200.00,7,1,6),('13','103','N','North','2019-02-14','13:15:07',150.00,7,1,3),('14','104','Y','East','2019-01-19','10:20:18',190.00,7,1,6),('15','5','0','North','2019-02-20','15:19:49',150.00,7,1,3),('ehTnKqXy','44','1','44','2019-07-04','12:30:00',44.00,1,1,1),('QRY6H202','101','','yytyt','2019-12-04','12:30:00',66.00,4,1,4),('XsB2GyA2','44','1','44','2019-07-04','12:30:00',44.00,1,1,1);
+INSERT INTO `tours` VALUES ('11','101','Y','South','2019-01-03','17:19:16',200.00,7,1,6),('12','102','Y','South','2019-03-01','11:10:59',200.00,7,1,6),('13','103','N','North','2019-02-14','13:15:07',150.00,7,1,3),('14','104','Y','East','2019-01-19','10:20:18',190.00,7,1,6),('15','5','0','North','2019-02-20','15:19:49',150.00,7,1,3),('ehTnKqXy','44','1','44','2019-07-04','12:30:00',44.00,1,1,1),('PVb0kv4z','105','1','North','2019-04-02','12:30:00',150.00,3,0,3),('QRY6H202','101','','yytyt','2019-12-04','12:30:00',66.00,4,1,4),('XsB2GyA2','44','1','44','2019-07-04','12:30:00',44.00,1,1,1);
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -614,4 +627,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-04 20:08:07
+-- Dump completed on 2019-07-08 14:07:01
